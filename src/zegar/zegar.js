@@ -1,11 +1,16 @@
 import React, {Component} from "react";
 
+import "./zegarek.css"
 
 class Zegarek extends Component {
   constructor(props) {
     super(props);
 
     this.czasownik = this.czasownik.bind(this);
+
+    this.state = {
+      czas: ""
+    }
   }
 
 
@@ -32,16 +37,27 @@ class Zegarek extends Component {
     }
     e += secondo;
 
-    return e;
-  }
+    
+    this.setState({
+      czas: e
+    });
+    
 
-  setInterval(czasownik,1000);
+  }
+  componentDidMount() {
+    
+    this.interval = setInterval(this.czasownik,1000);
+  }
+  
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
 
   render(){
     return(
-      <div>
-        <p>{this.czasownik()}</p>
+      <div className="zegarek">
+        <p>{this.state.czas}</p>
       </div>
     );
   }
