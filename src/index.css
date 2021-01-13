@@ -3,3 +3,10 @@ body {
   font-family: monospace;
   background-color: #77CCFF;
 }
+
+.ogol {
+	border: 1px solid #FFF;
+	width: 140px;
+	height: 220px;
+	margin: 0 auto;
+}
