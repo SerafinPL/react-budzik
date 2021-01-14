@@ -56,7 +56,7 @@ render(){
 	<React.Fragment>
 	<div className="blok">
 		<Guzik children="+" klasa="guzikMaly" funkcja={this.zwieksz}/>
-		<Okienko zawartosc={this.state.wartosc}/>
+		<Okienko identyfik={this.props.identy} zawartosc={this.state.wartosc}/>
 		<Guzik children="-" klasa="guzikMaly" funkcja={this.zmiejsz}/>
 	</div>
 	</React.Fragment>

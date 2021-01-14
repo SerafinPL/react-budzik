@@ -57,7 +57,7 @@ class Zegarek extends Component {
   render(){
     return(
       <div className="zegarek">
-        <p>{this.state.czas}</p>
+        <p id="zegar">{this.state.czas}</p>
       </div>
     );
   }

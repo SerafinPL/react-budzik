@@ -6,7 +6,7 @@ class Okienko extends Component {
 render(){
 	return(
           <React.Fragment>
-            <span>{this.props.zawartosc}</span>
+            <span id={this.props.identyfik}>{this.props.zawartosc}</span>
           </React.Fragment>
         );
 }
