@@ -10,7 +10,7 @@ class Wyswietlacz extends Component {
 	constructor(props){
 		super(props);
 
-		this.alertor = this.alertor.bind(this);
+		
 		this.zwieksz = this.zwieksz.bind(this);
 		this.zmiejsz = this.zmiejsz.bind(this);
 
@@ -45,9 +45,7 @@ class Wyswietlacz extends Component {
 			});
 		}
 	}
-	alertor(){
-		window.alert("bubu");
-	}
+	
 
 
 
