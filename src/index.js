@@ -5,12 +5,19 @@ import './index.css';
 import Zegarek from "./zegar/zegar.js";
 import Wyswietlacz from "./budzik/wyswietlacz.js"
 import Guzik from "./guziki/guzik.js";
+import Czasy from "./czasy/czasy.js";
+
 
 class Budzik extends React.Component {
 	constructor(props){
 		super(props);
 
 		this.ustawianie = this.ustawianie.bind(this);
+		this.kasowanie = this.kasowanie.bind(this);
+
+		this.state = {
+			czasy : []
+		}
 	}
 
 
@@ -36,11 +43,33 @@ class Budzik extends React.Component {
 		} 
 		czas += s;
 
-		
-		console.log(czas);
+
+		var tablicaCzasow = this.state.czasy;
+
+		tablicaCzasow.unshift({
+			budzik : czas,
+			klucz : Date.now()
+		});
+
+		this.setState({
+			czasy : tablicaCzasow
+		});
+
+		console.log(this.state.czasy);		
 
 	}
 
+
+	kasowanie(kluczyk){
+
+	var filtrowanie = this.state.czasy.filter(function(item){
+      return (item.klucz !== kluczyk)
+    });
+
+    this.setState({
+      czasy: filtrowanie
+    });
+  }
 
 
 
@@ -52,7 +81,7 @@ class Budzik extends React.Component {
     			<Wyswietlacz ogranicz="59" identy="minu"/>
     			<Wyswietlacz ogranicz="59" identy="seku"/>
     			<Guzik children="Ustaw" klasa="guzikUstaw" funkcja={this.ustawianie}/>
-
+    			<Czasy elementy={this.state.czasy} kasuj={this.kasowanie}/>
   			</div>
 	
 		);

@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 
-import "./wyswietlacz.css"
 
 import Guzik from "../guziki/guzik.js";
 import Okienko from "../okienko/okienko";
