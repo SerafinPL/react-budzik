@@ -13,7 +13,7 @@ class Czasy extends Component {
 
   noweWpisy(element){
     return(
-      <li
+      <li className="wpisy"
         key={element.klucz}>{element.budzik}
         <span onClick={() => this.usunWpisy(element.klucz)}>X</span></li>
     );
