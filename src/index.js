@@ -14,6 +14,7 @@ class Budzik extends React.Component {
 
 		this.ustawianie = this.ustawianie.bind(this);
 		this.kasowanie = this.kasowanie.bind(this);
+		
 
 		this.state = {
 			czasy : []
@@ -62,14 +63,16 @@ class Budzik extends React.Component {
 
 	kasowanie(kluczyk){
 
-	var filtrowanie = this.state.czasy.filter(function(item){
-      return (item.klucz !== kluczyk)
-    });
+		var filtrowanie = this.state.czasy.filter(function(item){
+      		return (item.klucz !== kluczyk)
+    	});
 
-    this.setState({
-      czasy: filtrowanie
-    });
-  }
+    	this.setState({
+      		czasy: filtrowanie
+    	});
+  	}
+
+  	
 
 
 
@@ -82,12 +85,34 @@ class Budzik extends React.Component {
     			<Wyswietlacz ogranicz="59" identy="seku"/>
     			<Guzik children="Ustaw" klasa="guzikUstaw" funkcja={this.ustawianie}/>
     			<Czasy elementy={this.state.czasy} kasuj={this.kasowanie}/>
+    			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
   			</div>
 	
 		);
 	}
 }
 	ReactDOM.render(
-	<Budzik/>,
-  	document.getElementById('kontener')
+		<Budzik/>,
+  		document.getElementById('kontener')
   	);
+
+  	function porownanie(){
+  		var czasy = document.getElementsByClassName("wpisy");
+  		var aktualnyCzas = document.getElementById("zegar").textContent;
+  		
+  			for(var i = 0;i < czasy.length ; i++){
+  				console.log(czasy[i].textContent.slice(0,8));
+  				var t = czasy[i].textContent.slice(0,8);
+
+  				if (t == aktualnyCzas){
+  					window.alert(aktualnyCzas);
+  					document.getElementById("audio").play();
+  				}
+  			}
+  		
+  		
+  	}
+
+  	setInterval(porownanie,1000);
+
+  	
