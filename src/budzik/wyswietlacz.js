@@ -3,7 +3,7 @@ import React, {Component} from "react";
 
 import Guzik from "../guziki/guzik.js";
 import Okienko from "../okienko/okienko";
-import Zegarek from "../zegar/zegar.js";
+
 
 class Wyswietlacz extends Component {
 	constructor(props){
