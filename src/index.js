@@ -8,6 +8,7 @@ import Guzik from "./guziki/guzik.js";
 import Czasy from "./czasy/czasy.js";
 
 
+
 class Budzik extends React.Component {
 	constructor(props){
 		super(props);
@@ -105,8 +106,9 @@ class Budzik extends React.Component {
   				var t = czasy[i].textContent.slice(0,8);
 
   				if (t == aktualnyCzas){
-  					window.alert(aktualnyCzas);
+  					
   					document.getElementById("audio").play();
+  					window.alert(aktualnyCzas);
   				}
   			}
   		
