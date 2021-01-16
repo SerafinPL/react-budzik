@@ -9,8 +9,8 @@ class Budzik extends React.Component {
 	constructor(props){
 		super(props);
 
-		this.ustawianie = this.ustawianie.bind(this);
-		this.kasowanie = this.kasowanie.bind(this);
+		//this.ustawianie = this.ustawianie.bind(this);
+		//this.kasowanie = this.kasowanie.bind(this);
 		
 
 		this.state = {
@@ -18,8 +18,8 @@ class Budzik extends React.Component {
 		}
 	}
 
-
-	ustawianie(){
+	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
+	ustawianie = () =>{
 		var g = document.getElementById("godz").textContent;
 		var m = document.getElementById("minu").textContent;
 		var s = document.getElementById("seku").textContent;
@@ -58,7 +58,7 @@ class Budzik extends React.Component {
 	}
 
 
-	kasowanie(kluczyk){
+	kasowanie = (kluczyk) => {
 
 		var filtrowanie = this.state.czasy.filter(function(item){
       		return (item.klucz !== kluczyk)
