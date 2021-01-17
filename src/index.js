@@ -15,10 +15,7 @@ import Menu from "./menu/menu.js"
   			document.getElementById('guziki')
   		);
 	
-		ReactDOM.render(
-			<Budzik/>,
-  			document.getElementById('kontener')
-  		);
+		
 	
 
   	

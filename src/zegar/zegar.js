@@ -44,6 +44,7 @@ class Zegarek extends Component {
     
 
   }
+  
   componentDidMount() {
     
     this.interval = setInterval(this.czasownik,1000);

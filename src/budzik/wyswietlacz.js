@@ -10,8 +10,8 @@ class Wyswietlacz extends Component {
 		super(props);
 
 		
-		this.zwieksz = this.zwieksz.bind(this);
-		this.zmiejsz = this.zmiejsz.bind(this);
+		//this.zwieksz = this.zwieksz.bind(this);
+		//this.zmiejsz = this.zmiejsz.bind(this);
 
 		this.state = {
 			wartosc : 0
@@ -19,7 +19,7 @@ class Wyswietlacz extends Component {
 		}
 	}
 
-	zwieksz (){
+	zwieksz = () => {
 		if (this.state.wartosc < this.props.ogranicz){
 			this.setState ({ 
 				wartosc : this.state.wartosc + 1
@@ -31,7 +31,7 @@ class Wyswietlacz extends Component {
 		}
 	}
 
-	zmiejsz (){
+	zmiejsz = () => {
 		if (this.state.wartosc == 0){
 
 			this.setState ({ 
@@ -50,13 +50,13 @@ class Wyswietlacz extends Component {
 
 render(){
 	return(
-	<React.Fragment>
-	<div className="blok">
-		<Guzik children="+" klasa="guzikMaly" funkcja={this.zwieksz}/>
-		<Okienko identyfik={this.props.identy} zawartosc={this.state.wartosc}/>
-		<Guzik children="-" klasa="guzikMaly" funkcja={this.zmiejsz}/>
-	</div>
-	</React.Fragment>
+		<React.Fragment>
+			<div className="blok">
+				<Guzik children="+" klasa="guzikMaly" funkcja={this.zwieksz}/>
+				<Okienko identyfik={this.props.identy} zawartosc={this.state.wartosc}/>
+				<Guzik children="-" klasa="guzikMaly" funkcja={this.zmiejsz}/>
+			</div>
+		</React.Fragment>
 	);
 }
 

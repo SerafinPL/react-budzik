@@ -11,7 +11,7 @@ class Czasy extends Component {
     this.usunWpisy = this.usunWpisy.bind(this);
   }
 
-  noweWpisy(element){
+  noweWpisy = (element) => {
     return(
       <li className="wpisy"
         key={element.klucz}>{element.budzik}
@@ -19,7 +19,7 @@ class Czasy extends Component {
     );
   }
 
-  usunWpisy(klucz) {
+  usunWpisy = (klucz) => {
     this.props.kasuj(klucz);
   }
 

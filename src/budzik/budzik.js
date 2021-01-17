@@ -20,11 +20,11 @@ class Budzik extends React.Component {
 
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
 	ustawianie = () =>{
-		var g = document.getElementById("godz").textContent;
-		var m = document.getElementById("minu").textContent;
-		var s = document.getElementById("seku").textContent;
+		const g = document.getElementById("godz").textContent;
+		const m = document.getElementById("minu").textContent;
+		const s = document.getElementById("seku").textContent;
 
-		var czas = "";
+		let czas = "";
 
 		if (g < 10){
 			czas = "0"; 
@@ -42,7 +42,7 @@ class Budzik extends React.Component {
 		czas += s;
 
 
-		var tablicaCzasow = this.state.czasy;
+		let tablicaCzasow = this.state.czasy;
 
 		tablicaCzasow.unshift({
 			budzik : czas,
@@ -60,7 +60,7 @@ class Budzik extends React.Component {
 
 	kasowanie = (kluczyk) => {
 
-		var filtrowanie = this.state.czasy.filter(function(item){
+		let filtrowanie = this.state.czasy.filter((item) => {
       		return (item.klucz !== kluczyk)
     	});
 
@@ -69,7 +69,37 @@ class Budzik extends React.Component {
     	});
   	}
 
+  	porownanie = () => {
+  		const czasy = document.getElementsByClassName("wpisy");
+  		const aktualnyCzas = document.getElementById("zegar").textContent;
+  		
+  			for(let i = 0;i < czasy.length ; i++){
+  				console.log(czasy[i].textContent.slice(0,8));
+  				let t = czasy[i].textContent.slice(0,8);
+
+  				if (t == aktualnyCzas){
+  					
+  					document.getElementById("audio").play();
+  					window.alert(aktualnyCzas);
+  				}
+  			}
+  		
+  		
+  	}
+
+  	componentDidMount() {
+    
+    	this.interval = setInterval(this.porownanie,1000);
+  	}
+  
+  	componentWillUnmount() {
+    	clearInterval(this.interval);
+  	}	
+
+	
   	
+
+
 
 	render(){
 		return(
@@ -88,25 +118,9 @@ class Budzik extends React.Component {
 }
 
 
-const  porownanie = () => {
-  		var czasy = document.getElementsByClassName("wpisy");
-  		var aktualnyCzas = document.getElementById("zegar").textContent;
-  		
-  			for(var i = 0;i < czasy.length ; i++){
-  				console.log(czasy[i].textContent.slice(0,8));
-  				var t = czasy[i].textContent.slice(0,8);
 
-  				if (t == aktualnyCzas){
-  					
-  					document.getElementById("audio").play();
-  					window.alert(aktualnyCzas);
-  				}
-  			}
-  		
-  		
-  	}
 
-  	setInterval(porownanie,1000);
+  	
 
 
 export default Budzik;
