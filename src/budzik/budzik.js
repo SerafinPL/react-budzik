@@ -70,18 +70,19 @@ class Budzik extends React.Component {
   	} // kasowanie
 
   	porownanie = () => {
-  		const czasy = document.getElementsByClassName("wpisy");
+  		const czasy = this.state.czasy //document.getElementsByClassName("wpisy");
   		const aktualnyCzas = document.getElementById("zegar").textContent;
   		
   		for(let i = 0;i < czasy.length ; i++){
-  			console.log(czasy[i].textContent.slice(0,8));
-  			let t = czasy[i].textContent.slice(0,8);
+  			
+  			let t = czasy[i].budzik.slice(0,8);
 
   			if (t === aktualnyCzas){
   					
   				document.getElementById("audio").play();
+  				window.alert(aktualnyCzas);
   				this.kasowanie(czasy[i].klucz);
-  				window.alert(czasy[i].klucz);
+  				
   			}
   		}
   	} // porownanie

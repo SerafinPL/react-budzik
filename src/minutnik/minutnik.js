@@ -97,7 +97,7 @@ class Minutnik extends React.Component {
   					// jeżeli doszlo do zera to muzyka i kasujemy wpis i zaznaczamy aby sie 
   					// nie wpisał na nowo
 					document.getElementById("audio").play();
-  					
+  					window.alert('Odliczono do zera!!!')
   					skasowano = i;
   				}
 
