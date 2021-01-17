@@ -90,21 +90,21 @@ class Minutnik extends React.Component {
   				
   				let tns, tnm, tng;
   				// v Robimy odliczanie
-  				tns = ts -1;
+  				
   				if (ts > 0){
   					tns = ts-1
   					tnm = tm;
   					tng = tg;
-  				} else if (tns == 0 && tm > 0 ){
+  				} else if (ts == 0 && tm > 0 ){
   					tns = 59;
   					tnm = tm -1;
   					tng = tg;
-  				} else if (tns == 0 && tm == 0 && tg > 0){
+  				} else if (ts == 0 && tm == 0 && tg > 0){
   					tns = 59;
   					tnm = 59;
   					tng = tg - 1;
-  				} else if ( tns < 0 && tm == 0 && tg == 0){
-  					// jeżeli doszlo do zera to muzyka  i zaznaczamy aby sie 
+  				} else if ( ts == 0 && tm == 0 && tg == 0){
+  					// jeżeli doszlo do zera to muzyka i kasujemy wpis i zaznaczamy aby sie 
   					// nie wpisał na nowo
 					document.getElementById("audio").play();
   					
@@ -132,17 +132,12 @@ class Minutnik extends React.Component {
 				
 				if (i !== skasowano){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
 									  // na nowo
-					if (i== 0){ // jeżeli pierwszy
-						noweCzasy[i] = {
+					
+						noweCzasy.push( {
 							budzik : czas,
 							klucz : czasy[i].klucz
-						}
-					}else{ // jeżeli kolejny to dodajemy
-						noweCzasy[i] += {
-							budzik : czas,
-							klucz : czasy[i].klucz
-						}
-					}
+						});
+					
 				}
 				console.log(noweCzasy);
   				console.log("g:" + tng + " m:" + tnm + " s:" + tns);
