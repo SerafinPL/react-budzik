@@ -1,9 +1,11 @@
-import React, {Component} from "react";
+import React from "react";
 
 import Zegarek from "../zegar/zegar.js";
 import Wyswietlacz from "../budzik/wyswietlacz.js"
 import Guzik from "../guziki/guzik.js";
 import Czasy from "../czasy/czasy.js";
+
+
 
 class Minutnik extends React.Component {
 	constructor(props){
@@ -11,8 +13,7 @@ class Minutnik extends React.Component {
 
 		//this.ustawianie = this.ustawianie.bind(this);
 		//this.kasowanie = this.kasowanie.bind(this);
-		
-
+	
 		this.state = {
 			czasy : []
 		}
@@ -41,7 +42,6 @@ class Minutnik extends React.Component {
 		} 
 		czas += s;
 
-
 		let tablicaCzasow = this.state.czasy;
 
 		tablicaCzasow.unshift({
@@ -52,9 +52,6 @@ class Minutnik extends React.Component {
 		this.setState({
 			czasy : tablicaCzasow
 		});
-
-		
-
 	}
 
 
@@ -70,10 +67,6 @@ class Minutnik extends React.Component {
   	}
 
 
-  	czasowanie = () => {
-
-  	}
-
   	odliczanie = () => {
   		const czasy = this.state.czasy;
   		//const aktualnyCzas = document.getElementById("zegar").textContent;
@@ -82,12 +75,9 @@ class Minutnik extends React.Component {
   			for(let i = 0;i < czasy.length ; i++){
   				// v Wyodrębniamy godziny minuty i sekundy v
   				let tg = Number(czasy[i].budzik.slice(0,2));
-
   				let tm = Number(czasy[i].budzik.slice(3,5));
-
   				let ts = Number(czasy[i].budzik.slice(6,8));
-  				
-  				
+  				  				
   				let tns, tnm, tng;
   				// v Robimy odliczanie
   				
@@ -109,7 +99,6 @@ class Minutnik extends React.Component {
 					document.getElementById("audio").play();
   					
   					skasowano = i;
-
   				}
 
   				// ustawiamy pomniejszony stan
@@ -132,53 +121,34 @@ class Minutnik extends React.Component {
 				
 				if (i !== skasowano){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
 									  // na nowo
-					
-						noweCzasy.push( {
-							budzik : czas,
-							klucz : czasy[i].klucz
-						});
-					
+					noweCzasy.push( {  // ustaiwamy nowa tablice z pozostałych
+						budzik : czas,
+						klucz : czasy[i].klucz
+					});
 				}
-				console.log(noweCzasy);
-  				console.log("g:" + tng + " m:" + tnm + " s:" + tns);
-  				
-
-  				/*if (t == aktualnyCzas){
-  					
-  					document.getElementById("audio").play();
-  					window.alert(aktualnyCzas);
-  				}*/
-  			}
-  			//console.log(this.state.czasy);
-  			//console.log(noweCzasy);
-  		if (noweCzasy !== undefined){
+			} // for
+  			
+  		if (noweCzasy !== undefined){ // blokada przed uzupełnianiem pusych tablic
   			this.setState({
       			czasy: noweCzasy
     		});
-
     	}
-  		
-  		
-  		
   	}
 
   	componentDidMount() {
-    
-    	this.interval = setInterval(this.odliczanie,1000);
+       	this.interval = setInterval(this.odliczanie,1000);
   	}
   
   	componentWillUnmount() {
     	clearInterval(this.interval);
   	}	
 
+
 	
-  	
-
-
-
 	render(){
 		return(
   			<div className="ogol">
+  				<p>Minutnik</p>
     			<Wyswietlacz ogranicz="23" identy="godz"/>
     			<Wyswietlacz ogranicz="59" identy="minu"/>
     			<Wyswietlacz ogranicz="59" identy="seku"/>

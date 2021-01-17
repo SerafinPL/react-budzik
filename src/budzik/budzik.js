@@ -19,7 +19,7 @@ class Budzik extends React.Component {
 	}
 
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
-	ustawianie = () =>{
+	ustawianie = () => {
 		const g = document.getElementById("godz").textContent;
 		const m = document.getElementById("minu").textContent;
 		const s = document.getElementById("seku").textContent;
@@ -55,7 +55,7 @@ class Budzik extends React.Component {
 
 		console.log(this.state.czasy);		
 
-	}
+	} //ustawianie
 
 
 	kasowanie = (kluczyk) => {
@@ -67,43 +67,37 @@ class Budzik extends React.Component {
     	this.setState({
       		czasy: filtrowanie
     	});
-  	}
+  	} // kasowanie
 
   	porownanie = () => {
   		const czasy = document.getElementsByClassName("wpisy");
   		const aktualnyCzas = document.getElementById("zegar").textContent;
   		
-  			for(let i = 0;i < czasy.length ; i++){
-  				console.log(czasy[i].textContent.slice(0,8));
-  				let t = czasy[i].textContent.slice(0,8);
+  		for(let i = 0;i < czasy.length ; i++){
+  			console.log(czasy[i].textContent.slice(0,8));
+  			let t = czasy[i].textContent.slice(0,8);
 
-  				if (t == aktualnyCzas){
+  			if (t == aktualnyCzas){
   					
-  					document.getElementById("audio").play();
-  					window.alert(aktualnyCzas);
-  				}
+  				document.getElementById("audio").play();
+  				window.alert(aktualnyCzas);
   			}
-  		
-  		
-  	}
+  		}
+  	} // porownanie
 
   	componentDidMount() {
-    
-    	this.interval = setInterval(this.porownanie,1000);
+       	this.interval = setInterval(this.porownanie,1000);
   	}
   
   	componentWillUnmount() {
     	clearInterval(this.interval);
   	}	
 
-	
-  	
-
-
 
 	render(){
 		return(
   			<div className="ogol">
+  				<p>Budzik</p>
     			<Zegarek/>
     			<Wyswietlacz ogranicz="23" identy="godz"/>
     			<Wyswietlacz ogranicz="59" identy="minu"/>

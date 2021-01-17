@@ -5,8 +5,14 @@ body {
 }
 
 .ogol {
-	border: 1px solid #FFF;
+	
 	width: 140px;
-	height: 220px;
+	height: 265px;
 	margin: 0 auto;
+}
+
+p {
+	text-align: center;
+	color: #FFF;
+	font-size: 20px;
 }
