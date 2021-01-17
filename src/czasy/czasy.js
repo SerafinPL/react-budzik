@@ -7,8 +7,8 @@ class Czasy extends Component {
   constructor(props) {
     super(props);
 
-    this.noweWpisy = this.noweWpisy.bind(this);
-    this.usunWpisy = this.usunWpisy.bind(this);
+    //this.noweWpisy = this.noweWpisy.bind(this);
+    //this.usunWpisy = this.usunWpisy.bind(this);
   }
 
   noweWpisy = (element) => {
