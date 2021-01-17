@@ -32,7 +32,7 @@ class Wyswietlacz extends Component {
 	}
 
 	zmiejsz = () => {
-		if (this.state.wartosc == 0){
+		if (this.state.wartosc === 0){
 
 			this.setState ({ 
 				wartosc : this.props.ogranicz

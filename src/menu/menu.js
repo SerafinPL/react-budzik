@@ -6,10 +6,7 @@ import Budzik from "../budzik/budzik.js";
 import Minutnik from "../minutnik/minutnik.js";
 
 class Menu extends Component {
-  constructor(props) {
-    super(props);
-
-  }
+  
 
   fBudzik = () =>{
   		ReactDOM.render(

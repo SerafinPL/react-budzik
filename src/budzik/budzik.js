@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import Zegarek from "../zegar/zegar.js";
 import Wyswietlacz from "./wyswietlacz.js"
@@ -77,10 +77,11 @@ class Budzik extends React.Component {
   			console.log(czasy[i].textContent.slice(0,8));
   			let t = czasy[i].textContent.slice(0,8);
 
-  			if (t == aktualnyCzas){
+  			if (t === aktualnyCzas){
   					
   				document.getElementById("audio").play();
-  				window.alert(aktualnyCzas);
+  				this.kasowanie(czasy[i].klucz);
+  				window.alert(czasy[i].klucz);
   			}
   		}
   	} // porownanie

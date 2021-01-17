@@ -1,6 +1,6 @@
 import React from "react";
 
-import Zegarek from "../zegar/zegar.js";
+
 import Wyswietlacz from "../budzik/wyswietlacz.js"
 import Guzik from "../guziki/guzik.js";
 import Czasy from "../czasy/czasy.js";
@@ -85,15 +85,15 @@ class Minutnik extends React.Component {
   					tns = ts-1
   					tnm = tm;
   					tng = tg;
-  				} else if (ts == 0 && tm > 0 ){
+  				} else if (ts === 0 && tm > 0 ){
   					tns = 59;
   					tnm = tm -1;
   					tng = tg;
-  				} else if (ts == 0 && tm == 0 && tg > 0){
+  				} else if (ts === 0 && tm === 0 && tg > 0){
   					tns = 59;
   					tnm = 59;
   					tng = tg - 1;
-  				} else if ( ts == 0 && tm == 0 && tg == 0){
+  				} else if ( ts === 0 && tm === 0 && tg === 0){
   					// jeżeli doszlo do zera to muzyka i kasujemy wpis i zaznaczamy aby sie 
   					// nie wpisał na nowo
 					document.getElementById("audio").play();
