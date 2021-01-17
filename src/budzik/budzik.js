@@ -88,7 +88,7 @@ class Budzik extends React.Component {
 }
 
 
-function porownanie(){
+const  porownanie = () => {
   		var czasy = document.getElementsByClassName("wpisy");
   		var aktualnyCzas = document.getElementById("zegar").textContent;
   		
