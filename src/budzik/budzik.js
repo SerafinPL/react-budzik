@@ -81,7 +81,7 @@ class Budzik extends React.Component {
   					
   				document.getElementById("audio").play();
   				window.alert(aktualnyCzas);
-  				this.kasowanie(czasy[i].klucz);
+  				//this.kasowanie(czasy[i].klucz);
   				
   			}
   		}
