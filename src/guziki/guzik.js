@@ -3,15 +3,15 @@ import "./guzik.css";
 
 
 
-
-
-function Guzik(props) {
-	return (
+const Guzik = (props) => {
+	return(
 		<React.Fragment>
             <button onClick={props.funkcja} className={props.klasa}>{props.children}</button>
         </React.Fragment>
 	)
-} // GUZIK
+}; // Guzik
+
+
 
 export default Guzik;
 
