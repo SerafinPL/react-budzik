@@ -1,16 +1,15 @@
 import React, {Component} from "react";
 
 
-class Okienko extends Component {
-
-render(){
+function Okienko(props){
 	return(
           <React.Fragment>
-            <span id={this.props.identyfik}>{this.props.zawartosc}</span>
+            <span id={props.identyfik}>{props.zawartosc}</span>
           </React.Fragment>
         );
 }
 
-} // class Wyswietlacz
+
+ // class Wyswietlacz
 
 export default Okienko;
