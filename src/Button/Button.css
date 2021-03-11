@@ -1,0 +1,40 @@
+.blok {
+	width: 20px;
+	height: 70px;
+	float: left;
+	margin-left: 20px;
+}
+
+
+
+.blok span {
+	float: left;
+	clear: both;
+	height: 30px;
+	line-height: 27px;
+	width: 20px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.guzikMaly {
+	float: left;
+	clear: both;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #fff;
+	text-align: center;
+	padding: 0;
+}
+
+.guzikUstaw {
+	float: left;
+	clear: both;
+	width: 100px;
+	height: 20px;
+	border: 1px solid #fff;
+	text-align: center;
+	padding: 0;
+	margin-top: 5px;
+	margin-left: 20px;
+}
