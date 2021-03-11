@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/react-budzik/static/css/main.e019b608.chunk.css",
-    "main.js": "/react-budzik/static/js/main.70711893.chunk.js",
-    "main.js.map": "/react-budzik/static/js/main.70711893.chunk.js.map",
+    "main.css": "/react-budzik/static/css/main.00cb3b02.chunk.css",
+    "main.js": "/react-budzik/static/js/main.05158f4f.chunk.js",
+    "main.js.map": "/react-budzik/static/js/main.05158f4f.chunk.js.map",
     "runtime-main.js": "/react-budzik/static/js/runtime-main.c7b60e7f.js",
     "runtime-main.js.map": "/react-budzik/static/js/runtime-main.c7b60e7f.js.map",
-    "static/js/2.cd1aa746.chunk.js": "/react-budzik/static/js/2.cd1aa746.chunk.js",
-    "static/js/2.cd1aa746.chunk.js.map": "/react-budzik/static/js/2.cd1aa746.chunk.js.map",
+    "static/js/2.da424f0f.chunk.js": "/react-budzik/static/js/2.da424f0f.chunk.js",
+    "static/js/2.da424f0f.chunk.js.map": "/react-budzik/static/js/2.da424f0f.chunk.js.map",
     "index.html": "/react-budzik/index.html",
-    "static/css/main.e019b608.chunk.css.map": "/react-budzik/static/css/main.e019b608.chunk.css.map",
-    "static/js/2.cd1aa746.chunk.js.LICENSE.txt": "/react-budzik/static/js/2.cd1aa746.chunk.js.LICENSE.txt"
+    "static/css/main.00cb3b02.chunk.css.map": "/react-budzik/static/css/main.00cb3b02.chunk.css.map",
+    "static/js/2.da424f0f.chunk.js.LICENSE.txt": "/react-budzik/static/js/2.da424f0f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c7b60e7f.js",
-    "static/js/2.cd1aa746.chunk.js",
-    "static/css/main.e019b608.chunk.css",
-    "static/js/main.70711893.chunk.js"
+    "static/js/2.da424f0f.chunk.js",
+    "static/css/main.00cb3b02.chunk.css",
+    "static/js/main.05158f4f.chunk.js"
   ]
 }
