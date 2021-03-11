@@ -14,81 +14,81 @@ class Budzik extends React.Component {
 		
 
 		this.state = {
-			czasy : []
+			times : []
 		}
 	}
 
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
 	ustawianie = () => {
-		const g = document.getElementById("godz").textContent;
-		const m = document.getElementById("minu").textContent;
-		const s = document.getElementById("seku").textContent;
+		const g = document.getElementById("hour").textContent;
+		const m = document.getElementById("min").textContent;
+		const s = document.getElementById("sec").textContent;
 
-		let czas = "";
+		let timer = "";
 
 		if (g < 10){
-			czas = "0"; 
+			timer = "0"; 
 		} 
-		czas += g + ":";
+		timer += g + ":";
 
 		if (m < 10){
-			czas += "0"; 
+			timer += "0"; 
 		} 
-		czas += m + ":";
+		timer += m + ":";
 
 		if (s < 10){
-			czas += "0"; 
+			timer += "0"; 
 		} 
-		czas += s;
+		timer += s;
 
 
-		let tablicaCzasow = this.state.czasy;
+		let tablicaCzasow = this.state.times;
 
 		tablicaCzasow.unshift({
-			budzik : czas,
+			alarmClock : timer,
 			klucz : Date.now()
 		});
 
 		this.setState({
-			czasy : tablicaCzasow
+			times : tablicaCzasow
 		});
 
-		console.log(this.state.czasy);		
+		console.log(this.state.times);		
 
 	} //ustawianie
 
 
 	kasowanie = (kluczyk) => {
 
-		let filtrowanie = this.state.czasy.filter((item) => {
+		let filter = this.state.times.filter((item) => {
       		return (item.klucz !== kluczyk)
     	});
 
     	this.setState({
-      		czasy: filtrowanie
+      		times: filter
     	});
   	} // kasowanie
 
-  	porownanie = () => {
-  		const czasy = this.state.czasy //document.getElementsByClassName("wpisy");
-  		const aktualnyCzas = document.getElementById("zegar").textContent;
+  	comparison = () => {
+  		const times = this.state.times //document.getElementsByClassName("wpisy");
+  		const currentTime = document.getElementById("zegar").textContent;
   		
-  		for(let i = 0;i < czasy.length ; i++){
+  		for(let i = 0;i < times.length ; i++){
   			
-  			let t = czasy[i].budzik.slice(0,8);
+  			let t = times[i].alarmClock.slice(0,8);
 
-  			if (t === aktualnyCzas){
+  			if (t === currentTime){
   					
   				document.getElementById("audio").play();
-  				window.alert(aktualnyCzas);
-  				//this.kasowanie(czasy[i].klucz);
+  				window.alert(currentTime);
+  				//this.kasowanie(times[i].klucz);
   				
   			}
   		}
-  	} // porownanie
+  	} // comparison
 
   	componentDidMount() {
-       	this.interval = setInterval(this.porownanie,1000);
+       	this.interval = setInterval(this.comparison,1000);
   	}
   
   	componentWillUnmount() {
@@ -98,14 +98,14 @@ class Budzik extends React.Component {
 
 	render(){
 		return(
-  			<div className="ogol">
+  			<div className="main">
   				<p>Budzik</p>
     			<Clock/>
-    			<Display ogranicz="23" identy="godz"/>
-    			<Display ogranicz="59" identy="minu"/>
-    			<Display ogranicz="59" identy="seku"/>
-    			<Button children="Ustaw" klasa="guzikUstaw" funkcja={this.ustawianie}/>
-    			<Times elementy={this.state.czasy} kasuj={this.kasowanie}/>
+    			<Display gardener="23" identy="hour"/>
+    			<Display gardener="59" identy="min"/>
+    			<Display gardener="59" identy="sec"/>
+    			<Button children="Ustaw" classe="buttSet" func={this.ustawianie}/>
+    			<Times elementy={this.state.times} kasuj={this.kasowanie}/>
     			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
   			</div>
 	

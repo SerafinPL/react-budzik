@@ -20,7 +20,7 @@ class Wyswietlacz extends Component {
 	}
 
 	zwieksz = () => {
-		if (this.state.wartosc < this.props.ogranicz){
+		if (this.state.wartosc < this.props.gardener){
 			this.setState ({ 
 				wartosc : this.state.wartosc + 1
 			});
@@ -35,7 +35,7 @@ class Wyswietlacz extends Component {
 		if (this.state.wartosc === 0){
 
 			this.setState ({ 
-				wartosc : this.props.ogranicz
+				wartosc : this.props.gardener
 			});
 
 		} else {
@@ -52,9 +52,9 @@ render(){
 	return(
 		<React.Fragment>
 			<div className="blok">
-				<Button children="+" klasa="guzikMaly" funkcja={this.zwieksz}/>
-				<Window identyfik={this.props.identy} zawartosc={this.state.wartosc}/>
-				<Button children="-" klasa="guzikMaly" funkcja={this.zmiejsz}/>
+				<Button children="+" classe="guzikMaly" func={this.zwieksz}/>
+				<Window ident={this.props.identy} zawartosc={this.state.wartosc}/>
+				<Button children="-" classe="guzikMaly" func={this.zmiejsz}/>
 			</div>
 		</React.Fragment>
 	);

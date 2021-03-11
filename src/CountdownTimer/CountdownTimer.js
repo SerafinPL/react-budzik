@@ -147,12 +147,12 @@ class Minutnik extends React.Component {
 	
 	render(){
 		return(
-  			<div className="ogol">
+  			<div className="main">
   				<p>Minutnik</p>
-    			<Display ogranicz="23" identy="godz"/>
-    			<Display ogranicz="59" identy="minu"/>
-    			<Display ogranicz="59" identy="seku"/>
-    			<Button children="Ustaw" klasa="guzikUstaw" funkcja={this.ustawianie}/>
+    			<Display gardener="23" identy="godz"/>
+    			<Display gardener="59" identy="minu"/>
+    			<Display gardener="59" identy="seku"/>
+    			<Button children="Ustaw" classe="buttSet" func={this.ustawianie}/>
     			<Times elementy={this.state.czasy} kasuj={this.kasowanie}/>
     			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
   			</div>

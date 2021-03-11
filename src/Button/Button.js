@@ -6,7 +6,7 @@ import "./Button.css";
 const Guzik = (props) => {
 	return(
 		<React.Fragment>
-            <button onClick={props.funkcja} className={props.klasa}>{props.children}</button>
+            <button onClick={props.func} className={props.classe}>{props.children}</button>
         </React.Fragment>
 	)
 }; // Guzik

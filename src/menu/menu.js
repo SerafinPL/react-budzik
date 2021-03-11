@@ -11,7 +11,7 @@ class Menu extends Component {
   fAlarmClock = () => {
   		ReactDOM.render(
 			<AlarmClock/>,
-  			document.getElementById('kontener')
+  			document.getElementById('contener')
   		);
   }
 
@@ -19,7 +19,7 @@ class Menu extends Component {
   fCountdownTimer = () => {
   	ReactDOM.render(
 			<CountdownTimer/>,
-  			document.getElementById('kontener')
+  			document.getElementById('contener')
   		);
   }
 
@@ -27,10 +27,10 @@ render() {
 
 	return(
 		<React.Fragment>
-			<Button children="Budzik" klasa="guzikUstaw" funkcja={this.fAlarmClock}/>
-			<Button children="Minutnik" klasa="guzikUstaw" funkcja={this.fCountdownTimer}/>
-			<Button children="Stoper" klasa="guzikUstaw" />
-			<Button children="Odliczanie" klasa="guzikUstaw" />
+			<Button children="Budzik" classe="buttSet" func={this.fAlarmClock}/>
+			<Button children="Minutnik" classe="buttSet" func={this.fCountdownTimer}/>
+			<Button children="Stoper" classe="buttSet" />
+			<Button children="Odliczanie" classe="buttSet" />
 		</React.Fragment>
 		)
 }

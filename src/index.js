@@ -8,7 +8,7 @@ import Menu from "./menu/menu.js"
 
 		ReactDOM.render(
 			<Menu/>,
-  			document.getElementById('guziki')
+  			document.getElementById('buttons')
   		);
 	
 		
