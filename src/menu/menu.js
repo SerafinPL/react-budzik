@@ -1,24 +1,24 @@
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 
-import Guzik from "../guziki/guzik.js";
-import Budzik from "../budzik/budzik.js";
-import Minutnik from "../minutnik/minutnik.js";
+import Button from "../Button/Button.js";
+import AlarmClock from "../AlarmClock/AlarmClock.js";
+import CountdownTimer from "../CountdownTimer/CountdownTimer.js";
 
 class Menu extends Component {
   
 
-  fBudzik = () =>{
+  fAlarmClock = () => {
   		ReactDOM.render(
-			<Budzik/>,
+			<AlarmClock/>,
   			document.getElementById('kontener')
   		);
   }
 
 
-  fMinutnik = () => {
+  fCountdownTimer = () => {
   	ReactDOM.render(
-			<Minutnik/>,
+			<CountdownTimer/>,
   			document.getElementById('kontener')
   		);
   }
@@ -27,10 +27,10 @@ render() {
 
 	return(
 		<React.Fragment>
-			<Guzik children="Budzik" klasa="guzikUstaw" funkcja={this.fBudzik}/>
-			<Guzik children="Minutnik" klasa="guzikUstaw" funkcja={this.fMinutnik}/>
-			<Guzik children="Stoper" klasa="guzikUstaw" />
-			<Guzik children="Odliczanie" klasa="guzikUstaw" />
+			<Button children="Budzik" klasa="guzikUstaw" funkcja={this.fAlarmClock}/>
+			<Button children="Minutnik" klasa="guzikUstaw" funkcja={this.fCountdownTimer}/>
+			<Button children="Stoper" klasa="guzikUstaw" />
+			<Button children="Odliczanie" klasa="guzikUstaw" />
 		</React.Fragment>
 		)
 }
