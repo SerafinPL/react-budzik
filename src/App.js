@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ReactDOM from 'react-dom';
+
 import {NavLink, Route} from 'react-router-dom';
 
 import Button from "./Button/Button.js";
@@ -9,8 +9,7 @@ import classes from './App.module.css';
 
 class App extends Component {
   
-
-  
+ 
 
 render() {
 

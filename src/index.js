@@ -4,7 +4,7 @@ import './index.css';
 import {BrowserRouter} from 'react-router-dom';
 
 
-import Menu from "./menu/menu.js"
+
 import App from './App';
 
 

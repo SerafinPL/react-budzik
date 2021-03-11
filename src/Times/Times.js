@@ -1,38 +1,33 @@
 
-import React, {Component} from "react";
+import React from "react";
 import './Times.css';
 
 
-class Times extends Component {
-  constructor(props) {
-    super(props);
+const Times = (props)=> {
+  
 
-    //this.newItems = this.newItems.bind(this);
-    //this.deleteItems = this.deleteItems.bind(this);
-  }
-
-  newItems = (element) => {
+  const newItems = (element) => {
     return(
       <li className="item"
         key={element.key}>{element.alarmClock}
-        <span onClick={() => this.deleteItems(element.key)}>X</span></li>
+        <span onClick={() => deleteItems(element.key)}>X</span></li>
     );
   }
 
-  deleteItems = (key) => {
-    this.props.deleting(key);
+  const deleteItems = (key) => {
+    props.deleting(key);
   }
 
-  render() {
-      var Items = this.props.elements ;
-      var listElements = Items.map(this.newItems);
+  
+      var Items = props.elements ;
+      var listElements = Items.map(newItems);
 
       return(
         <ul className="list">
           {listElements}
         </ul>
       );
-  }
+  
 };
 
 export default Times;
