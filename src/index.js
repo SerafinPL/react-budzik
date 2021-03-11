@@ -12,7 +12,7 @@ import App from './App';
 			<BrowserRouter>
 				<App/>
 			</BrowserRouter>,
-  			document.getElementById('buttons')
+  			document.getElementById('root')
   		);
 	
 		
