@@ -6,7 +6,7 @@ class Clock extends Component {
   constructor(props) {
     super(props);
 
-    this.timer = this.timer.bind(this);
+    //this.timer = this.timer.bind(this);
 
     this.state = {
       time: ""
@@ -15,7 +15,7 @@ class Clock extends Component {
 
 
 
-  timer(){
+  timer = () => {
 
     const dd = new Date();
 

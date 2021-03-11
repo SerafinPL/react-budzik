@@ -5,7 +5,7 @@ import Display from "./Display.js"
 import Button from "../Button/Button.js";
 import Times from "../Times/Times.js";
 
-class Budzik extends React.Component {
+class AlarmClock extends React.Component {
 	constructor(props){
 		super(props);
 
@@ -119,4 +119,4 @@ class Budzik extends React.Component {
   	
 
 
-export default Budzik;
+export default AlarmClock;

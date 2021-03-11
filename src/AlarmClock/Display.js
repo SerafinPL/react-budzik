@@ -5,13 +5,13 @@ import Button from "../Button/Button.js";
 import Window from "../Window/Window";
 
 
-class Wyswietlacz extends Component {
+class Display extends Component {
 	constructor(props){
 		super(props);
 
 		
-		//this.zwieksz = this.zwieksz.bind(this);
-		//this.zmiejsz = this.zmiejsz.bind(this);
+		//this.upgrade = this.upgrade.bind(this);
+		//this.downgrade = this.downgrade.bind(this);
 
 		this.state = {
 			value : 0
@@ -19,7 +19,7 @@ class Wyswietlacz extends Component {
 		}
 	}
 
-	zwieksz = () => {
+	upgrade = () => {
 		if (this.state.value < this.props.gardener){
 			this.setState ({ 
 				value : this.state.value + 1
@@ -31,7 +31,7 @@ class Wyswietlacz extends Component {
 		}
 	}
 
-	zmiejsz = () => {
+	downgrade = () => {
 		if (this.state.value === 0){
 
 			this.setState ({ 
@@ -52,9 +52,9 @@ render(){
 	return(
 		<React.Fragment>
 			<div className="blok">
-				<Button children="+" classe="guzikMaly" func={this.zwieksz}/>
+				<Button children="+" classe="buttMini" func={this.upgrade}/>
 				<Window ident={this.props.identy} content={this.state.value}/>
-				<Button children="-" classe="guzikMaly" func={this.zmiejsz}/>
+				<Button children="-" classe="buttMini" func={this.downgrade}/>
 			</div>
 		</React.Fragment>
 	);
@@ -63,4 +63,4 @@ render(){
 } 
 
 
-export default Wyswietlacz;
+export default Display;

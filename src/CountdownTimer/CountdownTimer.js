@@ -7,12 +7,12 @@ import Times from "../Times/Times.js";
 
 
 
-class Minutnik extends React.Component {
+class CountdownTimer extends React.Component {
 	constructor(props){
 		super(props);
 
-		//this.ustawianie = this.ustawianie.bind(this);
-		//this.kasowanie = this.kasowanie.bind(this);
+		//this.setter = this.setter.bind(this);
+		//this.deleting = this.deleting.bind(this);
 	
 		this.state = {
 			times : []
@@ -20,58 +20,58 @@ class Minutnik extends React.Component {
 	}
 
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
-	ustawianie = () =>{
-		const g = document.getElementById("godz").textContent;
-		const m = document.getElementById("minu").textContent;
-		const s = document.getElementById("seku").textContent;
+	setter = () =>{
+		const g = document.getElementById("hour").textContent;
+		const m = document.getElementById("min").textContent;
+		const s = document.getElementById("sec").textContent;
 
-		let czas = "";
+		let timer = "";
 
 		if (g < 10){
-			czas = "0"; 
+			timer = "0"; 
 		} 
-		czas += g + ":";
+		timer += g + ":";
 
 		if (m < 10){
-			czas += "0"; 
+			timer += "0"; 
 		} 
-		czas += m + ":";
+		timer += m + ":";
 
 		if (s < 10){
-			czas += "0"; 
+			timer += "0"; 
 		} 
-		czas += s;
+		timer += s;
 
-		let tablicaCzasow = this.state.times;
+		let arrOfTimes = this.state.times;
 
-		tablicaCzasow.unshift({
-			alarmClock : czas,
+		arrOfTimes.unshift({
+			alarmClock : timer,
 			key : Date.now()
 		});
 
 		this.setState({
-			times : tablicaCzasow
+			times : arrOfTimes
 		});
 	}
 
 
-	kasowanie = (kluczyk) => {
+	deleting = (keyring) => {
 
-		let filtrowanie = this.state.times.filter((item) => {
-      		return (item.key !== kluczyk)
+		let filtering = this.state.times.filter((item) => {
+      		return (item.key !== keyring)
     	});
 
     	this.setState({
-      		times: filtrowanie
+      		times: filtering
     	});
   	}
 
 
-  	odliczanie = () => {
+  	counting = () => {
   		const times = this.state.times;
   		//const aktualnyCzas = document.getElementById("zegar").textContent;
-  		let noweCzasy = [];
-  		let skasowano; // zmienna zaznacza czy kasujemy ten element
+  		let newTimes = [];
+  		let deleted; // zmienna zaznacza czy kasujemy ten element
   			for(let i = 0;i < times.length ; i++){
   				// v Wyodrębniamy godziny minuty i sekundy v
   				let tg = Number(times[i].alarmClock.slice(0,2));
@@ -79,7 +79,7 @@ class Minutnik extends React.Component {
   				let ts = Number(times[i].alarmClock.slice(6,8));
   				  				
   				let tns, tnm, tng;
-  				// v Robimy odliczanie
+  				// v Robimy counting
   				
   				if (ts > 0){
   					tns = ts-1
@@ -98,45 +98,45 @@ class Minutnik extends React.Component {
   					// nie wpisał na nowo
 					document.getElementById("audio").play();
   					window.alert('Odliczono do zera!!!')
-  					skasowano = i;
+  					deleted = i;
   				}
 
   				// ustawiamy pomniejszony stan
-  				let czas = "";
+  				let timer = "";
 
 				if (tng < 10){
-					czas = "0"; 
+					timer = "0"; 
 				} 
-				czas += tng + ":";
+				timer += tng + ":";
 
 				if (tnm < 10){
-					czas += "0"; 
+					timer += "0"; 
 				} 
-				czas += tnm + ":";
+				timer += tnm + ":";
 
 				if (tns < 10){
-					czas += "0"; 
+					timer += "0"; 
 				} 
-				czas += tns;
+				timer += tns;
 				
-				if (i !== skasowano){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
+				if (i !== deleted){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
 									  // na nowo
-					noweCzasy.push( {  // ustaiwamy nowa tablice z pozostałych
-						alarmClock : czas,
+					newTimes.push( {  // ustaiwamy nowa tablice z pozostałych
+						alarmClock : timer,
 						key : times[i].key
 					});
 				}
 			} // for
   			
-  		if (noweCzasy !== undefined){ // blokada przed uzupełnianiem pusych tablic
+  		if (newTimes !== undefined){ // blokada przed uzupełnianiem pusych tablic
   			this.setState({
-      			times: noweCzasy
+      			times: newTimes
     		});
     	}
   	}
 
   	componentDidMount() {
-       	this.interval = setInterval(this.odliczanie,1000);
+       	this.interval = setInterval(this.counting,1000);
   	}
   
   	componentWillUnmount() {
@@ -149,11 +149,11 @@ class Minutnik extends React.Component {
 		return(
   			<div className="main">
   				<p>Minutnik</p>
-    			<Display gardener="23" identy="godz"/>
-    			<Display gardener="59" identy="minu"/>
-    			<Display gardener="59" identy="seku"/>
-    			<Button children="Ustaw" classe="buttSet" func={this.ustawianie}/>
-    			<Times elements={this.state.times} deleting={this.kasowanie}/>
+    			<Display gardener="23" identy="hour"/>
+    			<Display gardener="59" identy="min"/>
+    			<Display gardener="59" identy="sec"/>
+    			<Button children="Ustaw" classe="buttSet" func={this.setter}/>
+    			<Times elements={this.state.times} deleting={this.deleting}/>
     			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
   			</div>
 	
@@ -161,4 +161,4 @@ class Minutnik extends React.Component {
 	}
 }
 
-export default Minutnik;
+export default CountdownTimer;
