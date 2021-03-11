@@ -1,9 +1,10 @@
 import React from "react";
 
 import Clock from "../Clock/Clock.js";
-import Display from "./Display.js"
+import Display from "../Display/Display.js"
 import Button from "../Button/Button.js";
 import Times from "../Times/Times.js";
+import classes from './AlarmClock.module.css';
 
 class AlarmClock extends React.Component {
 	constructor(props){
@@ -98,7 +99,7 @@ class AlarmClock extends React.Component {
 
 	render(){
 		return(
-  			<div className="main">
+  			<div className={classes.main}>
   				<p>Budzik</p>
     			<Clock/>
     			<Display gardener="23" identy="hour"/>

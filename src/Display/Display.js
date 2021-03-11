@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 
 
-import Button from "../Button/Button.js";
+import Button from "../Button/Button";
 import Window from "../Window/Window";
+import classes from './Display.module.css'
 
 
 class Display extends Component {
@@ -51,7 +52,7 @@ class Display extends Component {
 render(){
 	return(
 		<React.Fragment>
-			<div className="blok">
+			<div className={classes.block}>
 				<Button children="+" classe="buttMini" func={this.upgrade}/>
 				<Window ident={this.props.identy} content={this.state.value}/>
 				<Button children="-" classe="buttMini" func={this.downgrade}/>

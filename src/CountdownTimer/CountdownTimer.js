@@ -1,9 +1,10 @@
 import React from "react";
 
 
-import Display from "../AlarmClock/Display.js"
+import Display from "../Display/Display.js"
 import Button from "../Button/Button.js";
 import Times from "../Times/Times.js";
+import classes from './CountdownTimer.module.css';
 
 
 
@@ -147,7 +148,7 @@ class CountdownTimer extends React.Component {
 	
 	render(){
 		return(
-  			<div className="main">
+  			<div className={classes.main}>
   				<p>Minutnik</p>
     			<Display gardener="23" identy="hour"/>
     			<Display gardener="59" identy="min"/>
