@@ -2,44 +2,44 @@ import React, {Component} from "react";
 
 import "./Clock.css"
 
-class Zegarek extends Component {
+class Clock extends Component {
   constructor(props) {
     super(props);
 
-    this.czasownik = this.czasownik.bind(this);
+    this.timer = this.timer.bind(this);
 
     this.state = {
-      czas: ""
+      time: ""
     }
   }
 
 
 
-  czasownik(){
+  timer(){
 
-    var dd = new Date();
+    const dd = new Date();
 
-    var e = '';
-    var godzin = dd.getHours();
-    if (godzin < 10) {
-      e += '0';
+    let editTime = '';
+    const hour = dd.getHours();
+    if (hour < 10) {
+      editTime += '0';
     }
-    e = godzin + ':';
+    editTime = hour + ':';
 
-    var minut = dd.getMinutes();
-    if (minut < 10) {
-      e += '0';
+    const min = dd.getMinutes();
+    if (min < 10) {
+      editTime += '0';
     }
-    e += minut + ':';
-    var secondo = dd.getSeconds();
+    editTime += min + ':';
+    const secondo = dd.getSeconds();
     if (secondo < 10) {
-      e += '0';
+      editTime += '0';
     }
-    e += secondo;
+    editTime += secondo;
 
     
     this.setState({
-      czas: e
+      time: editTime
     });
     
 
@@ -47,7 +47,7 @@ class Zegarek extends Component {
   
   componentDidMount() {
     
-    this.interval = setInterval(this.czasownik,1000);
+    this.interval = setInterval(this.timer,1000);
   }
   
   componentWillUnmount() {
@@ -57,11 +57,11 @@ class Zegarek extends Component {
 
   render(){
     return(
-      <div className="zegarek">
-        <p id="zegar">{this.state.czas}</p>
+      <div className="clock">
+        <p id="clock">{this.state.time}</p>
       </div>
     );
   }
 }
 
-export default Zegarek;
+export default Clock;

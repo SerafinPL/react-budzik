@@ -2,10 +2,10 @@ import React, {Component} from "react";
 
 
 
-const Okienko = (props) => {
+const Window = (props) => {
 	return(
           <React.Fragment>
-            <span id={props.ident}>{props.zawartosc}</span>
+            <span id={props.ident}>{props.content}</span>
           </React.Fragment>
         );
 };
@@ -15,4 +15,4 @@ const Okienko = (props) => {
 
  // class Wyswietlacz
 
-export default Okienko;
+export default Window;

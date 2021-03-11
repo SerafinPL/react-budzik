@@ -3,36 +3,36 @@ import React, {Component} from "react";
 import './Times.css';
 
 
-class Czasy extends Component {
+class Times extends Component {
   constructor(props) {
     super(props);
 
-    //this.noweWpisy = this.noweWpisy.bind(this);
-    //this.usunWpisy = this.usunWpisy.bind(this);
+    //this.newItems = this.newItems.bind(this);
+    //this.deleteItems = this.deleteItems.bind(this);
   }
 
-  noweWpisy = (element) => {
+  newItems = (element) => {
     return(
-      <li className="wpisy"
-        key={element.klucz}>{element.budzik}
-        <span onClick={() => this.usunWpisy(element.klucz)}>X</span></li>
+      <li className="item"
+        key={element.key}>{element.alarmClock}
+        <span onClick={() => this.deleteItems(element.key)}>X</span></li>
     );
   }
 
-  usunWpisy = (klucz) => {
-    this.props.kasuj(klucz);
+  deleteItems = (key) => {
+    this.props.deleting(key);
   }
 
   render() {
-      var wpisy = this.props.elementy ;
-      var elementyLisy = wpisy.map(this.noweWpisy);
+      var Items = this.props.elements ;
+      var listElements = Items.map(this.newItems);
 
       return(
-        <ul className="lista">
-          {elementyLisy}
+        <ul className="list">
+          {listElements}
         </ul>
       );
   }
 };
 
-export default Czasy;
+export default Times;

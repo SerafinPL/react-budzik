@@ -9,7 +9,7 @@ class Budzik extends React.Component {
 	constructor(props){
 		super(props);
 
-		//this.ustawianie = this.ustawianie.bind(this);
+		//this.setter = this.setter.bind(this);
 		//this.kasowanie = this.kasowanie.bind(this);
 		
 
@@ -19,7 +19,7 @@ class Budzik extends React.Component {
 	}
 
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
-	ustawianie = () => {
+	setter = () => {
 		const g = document.getElementById("hour").textContent;
 		const m = document.getElementById("min").textContent;
 		const s = document.getElementById("sec").textContent;
@@ -46,7 +46,7 @@ class Budzik extends React.Component {
 
 		tablicaCzasow.unshift({
 			alarmClock : timer,
-			klucz : Date.now()
+			key : Date.now()
 		});
 
 		this.setState({
@@ -55,23 +55,23 @@ class Budzik extends React.Component {
 
 		console.log(this.state.times);		
 
-	} //ustawianie
+	} //setter
 
 
-	kasowanie = (kluczyk) => {
+	deleting = (keyring) => {
 
 		let filter = this.state.times.filter((item) => {
-      		return (item.klucz !== kluczyk)
+      		return (item.key !== keyring)
     	});
 
     	this.setState({
       		times: filter
     	});
-  	} // kasowanie
+  	} // deleting
 
   	comparison = () => {
   		const times = this.state.times //document.getElementsByClassName("wpisy");
-  		const currentTime = document.getElementById("zegar").textContent;
+  		const currentTime = document.getElementById("clock").textContent;
   		
   		for(let i = 0;i < times.length ; i++){
   			
@@ -81,7 +81,7 @@ class Budzik extends React.Component {
   					
   				document.getElementById("audio").play();
   				window.alert(currentTime);
-  				//this.kasowanie(times[i].klucz);
+  				//this.deleting(times[i].key);
   				
   			}
   		}
@@ -104,8 +104,8 @@ class Budzik extends React.Component {
     			<Display gardener="23" identy="hour"/>
     			<Display gardener="59" identy="min"/>
     			<Display gardener="59" identy="sec"/>
-    			<Button children="Ustaw" classe="buttSet" func={this.ustawianie}/>
-    			<Times elementy={this.state.times} kasuj={this.kasowanie}/>
+    			<Button children="Ustaw" classe="buttSet" func={this.setter}/>
+    			<Times elements={this.state.times} deleting={this.deleting}/>
     			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
   			</div>
 	

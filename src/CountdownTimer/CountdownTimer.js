@@ -15,7 +15,7 @@ class Minutnik extends React.Component {
 		//this.kasowanie = this.kasowanie.bind(this);
 	
 		this.state = {
-			czasy : []
+			times : []
 		}
 	}
 
@@ -42,41 +42,41 @@ class Minutnik extends React.Component {
 		} 
 		czas += s;
 
-		let tablicaCzasow = this.state.czasy;
+		let tablicaCzasow = this.state.times;
 
 		tablicaCzasow.unshift({
-			budzik : czas,
-			klucz : Date.now()
+			alarmClock : czas,
+			key : Date.now()
 		});
 
 		this.setState({
-			czasy : tablicaCzasow
+			times : tablicaCzasow
 		});
 	}
 
 
 	kasowanie = (kluczyk) => {
 
-		let filtrowanie = this.state.czasy.filter((item) => {
-      		return (item.klucz !== kluczyk)
+		let filtrowanie = this.state.times.filter((item) => {
+      		return (item.key !== kluczyk)
     	});
 
     	this.setState({
-      		czasy: filtrowanie
+      		times: filtrowanie
     	});
   	}
 
 
   	odliczanie = () => {
-  		const czasy = this.state.czasy;
+  		const times = this.state.times;
   		//const aktualnyCzas = document.getElementById("zegar").textContent;
   		let noweCzasy = [];
   		let skasowano; // zmienna zaznacza czy kasujemy ten element
-  			for(let i = 0;i < czasy.length ; i++){
+  			for(let i = 0;i < times.length ; i++){
   				// v Wyodrębniamy godziny minuty i sekundy v
-  				let tg = Number(czasy[i].budzik.slice(0,2));
-  				let tm = Number(czasy[i].budzik.slice(3,5));
-  				let ts = Number(czasy[i].budzik.slice(6,8));
+  				let tg = Number(times[i].alarmClock.slice(0,2));
+  				let tm = Number(times[i].alarmClock.slice(3,5));
+  				let ts = Number(times[i].alarmClock.slice(6,8));
   				  				
   				let tns, tnm, tng;
   				// v Robimy odliczanie
@@ -122,15 +122,15 @@ class Minutnik extends React.Component {
 				if (i !== skasowano){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
 									  // na nowo
 					noweCzasy.push( {  // ustaiwamy nowa tablice z pozostałych
-						budzik : czas,
-						klucz : czasy[i].klucz
+						alarmClock : czas,
+						key : times[i].key
 					});
 				}
 			} // for
   			
   		if (noweCzasy !== undefined){ // blokada przed uzupełnianiem pusych tablic
   			this.setState({
-      			czasy: noweCzasy
+      			times: noweCzasy
     		});
     	}
   	}
@@ -153,7 +153,7 @@ class Minutnik extends React.Component {
     			<Display gardener="59" identy="minu"/>
     			<Display gardener="59" identy="seku"/>
     			<Button children="Ustaw" classe="buttSet" func={this.ustawianie}/>
-    			<Times elementy={this.state.czasy} kasuj={this.kasowanie}/>
+    			<Times elements={this.state.times} deleting={this.kasowanie}/>
     			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
   			</div>
 	

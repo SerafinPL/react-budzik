@@ -1,6 +1,6 @@
 
 
-ul {
+ul.list {
 	list-style-type: none;
 	float: left;
 	margin-top: 10px;
@@ -11,7 +11,7 @@ ul {
 	font-size: 20px;
 }
 
-ul li {
+ul li.item {
 	border: 2px dotted #FFF;
 }
 

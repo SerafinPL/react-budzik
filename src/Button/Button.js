@@ -3,17 +3,17 @@ import "./Button.css";
 
 
 
-const Guzik = (props) => {
+const Button = (props) => {
 	return(
 		<React.Fragment>
             <button onClick={props.func} className={props.classe}>{props.children}</button>
         </React.Fragment>
 	)
-}; // Guzik
+}; // Button
 
 
 
-export default Guzik;
+export default Button;
 
 
 
