@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import Clock from "../Clock/Clock.js";
 import Display from "../Display/Display.js"
@@ -6,21 +6,24 @@ import Button from "../Button/Button.js";
 import Times from "../Times/Times.js";
 import classes from './AlarmClock.module.css';
 
-class AlarmClock extends React.Component {
-	constructor(props){
-		super(props);
+const AlarmClock = (props) => {//extends React.Component {
+	// constructor(props){
+	// 	super(props);
 
-		//this.setter = this.setter.bind(this);
-		//this.kasowanie = this.kasowanie.bind(this);
+	// 	//this.setter = this.setter.bind(this);
+	// 	//this.kasowanie = this.kasowanie.bind(this);
 		
 
-		this.state = {
-			times : []
-		}
-	}
+	// 	this.state = {
+	// 		times : []
+	// 	}
+	// }
+
+	const [times, setTimes] = useState([]);
+
 
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
-	setter = () => {
+	const setter = () => {
 		const g = document.getElementById("hour").textContent;
 		const m = document.getElementById("min").textContent;
 		const s = document.getElementById("sec").textContent;
@@ -43,61 +46,70 @@ class AlarmClock extends React.Component {
 		timer += s;
 
 
-		let tablicaCzasow = this.state.times;
+		let tablicaCzasow = [...times];
 
 		tablicaCzasow.unshift({
 			alarmClock : timer,
 			key : Date.now()
 		});
 
-		this.setState({
-			times : tablicaCzasow
-		});
+		setTimes(tablicaCzasow);
 
-		console.log(this.state.times);		
+		// this.setState({
+		// 	times : tablicaCzasow
+		// });
+
+		//console.log(this.state.times);		
 
 	} //setter
 
 
-	deleting = (keyring) => {
+	const deleting = (keyring) => {
 
-		let filter = this.state.times.filter((item) => {
+		let filter = times.filter((item) => {
       		return (item.key !== keyring)
     	});
 
-    	this.setState({
-      		times: filter
-    	});
+    	// this.setState({
+     //  		times: filter
+    	// });
+    	setTimes(filter);
+
   	} // deleting
 
-  	comparison = () => {
-  		const times = this.state.times //document.getElementsByClassName("wpisy");
+  	const comparison = () => {
+  		const newTimes = [...times]//this.state.times //document.getElementsByClassName("wpisy");
   		const currentTime = document.getElementById("clock").textContent;
   		
-  		for(let i = 0;i < times.length ; i++){
+  		for(let i = 0;i < newTimes.length ; i++){
   			
-  			let t = times[i].alarmClock.slice(0,8);
+  			let t = newTimes[i].alarmClock.slice(0,8);
 
   			if (t === currentTime){
   					
   				document.getElementById("audio").play();
   				window.alert(currentTime);
-  				//this.deleting(times[i].key);
+  				//this.deleting(newTimes[i].key);
   				
   			}
   		}
   	} // comparison
 
-  	componentDidMount() {
-       	this.interval = setInterval(this.comparison,1000);
-  	}
+  	useEffect(() => {
+  		const interval = setInterval(comparison,1000);
+  		return clearInterval(interval);
+  	},[])
+
+  	// componentDidMount() {
+       	
+  	// }
   
-  	componentWillUnmount() {
-    	clearInterval(this.interval);
-  	}	
+  	// componentWillUnmount() {
+    	
+  	// }	
 
 
-	render(){
+	//render(){
 		return(
   			<div className={classes.main}>
   				<p>Budzik</p>
@@ -105,13 +117,13 @@ class AlarmClock extends React.Component {
     			<Display gardener="23" identy="hour"/>
     			<Display gardener="59" identy="min"/>
     			<Display gardener="59" identy="sec"/>
-    			<Button children="Ustaw" classe="buttSet" func={this.setter}/>
-    			<Times elements={this.state.times} deleting={this.deleting}/>
+    			<Button children="Ustaw" classe="buttSet" func={setter}/>
+    			<Times elements={times} deleting={deleting}/>
     			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
   			</div>
 	
 		);
-	}
+	//}
 }
 
 
