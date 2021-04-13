@@ -71,9 +71,9 @@ const Display = (props) => {
 	return(
 		<React.Fragment>
 			<div className={classes.block}>
-				<Button children="+" classe="buttMini" func={this.upgrade}/>
-				<Window ident={this.props.identy} content={this.state.value}/>
-				<Button children="-" classe="buttMini" func={this.downgrade}/>
+				<Button children="+" classe="buttMini" func={upgrade}/>
+				<Window ident={props.identy} content={value}/>
+				<Button children="-" classe="buttMini" func={downgrade}/>
 			</div>
 		</React.Fragment>
 	);
