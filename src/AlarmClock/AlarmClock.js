@@ -84,6 +84,7 @@ const AlarmClock = (props) => {
   	useEffect(() => {
   		const interval = setInterval(comparison,1000);
   		return clearInterval(interval);
+  		// eslint-disable-next-line
   	},[])
 
   

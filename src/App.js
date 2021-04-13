@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 
 import {NavLink, Route} from 'react-router-dom';
 
