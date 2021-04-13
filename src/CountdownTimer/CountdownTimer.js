@@ -43,7 +43,7 @@ class CountdownTimer extends React.Component {
 		} 
 		timer += s;
 
-		let arrOfTimes = this.state.times;
+		let arrOfTimes = [...this.state.times];
 
 		arrOfTimes.unshift({
 			alarmClock : timer,
@@ -69,10 +69,10 @@ class CountdownTimer extends React.Component {
 
 
   	counting = () => {
-  		const times = this.state.times;
+  		const times = [...this.state.times];
   		//const aktualnyCzas = document.getElementById("zegar").textContent;
   		let newTimes = [];
-  		let deleted; // zmienna zaznacza czy kasujemy ten element
+  		let deleted = null; // zmienna zaznacza czy kasujemy ten element
   			for(let i = 0;i < times.length ; i++){
   				// v Wyodrębniamy godziny minuty i sekundy v
   				let tg = Number(times[i].alarmClock.slice(0,2));

@@ -61,9 +61,10 @@ const AlarmClock = (props) => {
   	} // deleting
 
   	const comparison = () => {
+  		console.log('comparison');
   		const newTimes = [...times]//this.state.times //document.getElementsByClassName("wpisy");
   		const currentTime = document.getElementById("clock").textContent;
-  		
+  		console.log(newTimes);
   		
   		newTimes.map(index => {
 
@@ -83,12 +84,9 @@ const AlarmClock = (props) => {
 
   	useEffect(() => {
   		const interval = setInterval(comparison,1000);
-  		return clearInterval(interval);
+  		return () => clearInterval(interval);
   		// eslint-disable-next-line
   	},[])
-
-  
-
 
 	
 	return(
