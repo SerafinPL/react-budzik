@@ -5,14 +5,17 @@ ul.list {
 	float: left;
 	margin-top: 10px;
 	
-	width: 150px;
+	width: 100%;
 	padding: 0px;
 	text-align: center;
 	font-size: 20px;
+
 }
 
 ul li.item {
 	border: 2px dotted #FFF;
+	width: 150px;
+	margin: 10px auto;
 }
 
 ul li span{

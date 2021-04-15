@@ -66,15 +66,16 @@ const CountdownTimer = (props) => {
 	
 	
 	return(
+		<React.Fragment>
 			<div className={classes.main}>
 				<p>Minutnik</p>
-			<Display gardener="23" identy="hour"/>
-			<Display gardener="59" identy="min"/>
-			<Display gardener="59" identy="sec"/>
-			<Button children="Ustaw" classe="buttSet" func={setter}/>
-			<Times elements={context.countdowns} deleting={deleting}/>
-			
+				<Display gardener="23" identy="hour"/>
+				<Display gardener="59" identy="min"/>
+				<Display gardener="59" identy="sec"/>
+				<Button children="Ustaw" classe="buttSet" func={setter}/>
 			</div>
+			<Times elements={context.countdowns} deleting={deleting}/>
+		</React.Fragment>
 
 	);
 	

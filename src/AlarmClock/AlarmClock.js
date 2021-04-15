@@ -59,6 +59,7 @@ const AlarmClock = (props) => {
 
   		
 	return(
+	<React.Fragment>
 		<div className={classes.main}>
 			<p>Budzik</p>
 			<Clock/>
@@ -66,10 +67,9 @@ const AlarmClock = (props) => {
 			<Display gardener="59" identy="min"/>
 			<Display gardener="59" identy="sec"/>
 			<Button children="Ustaw" classe="buttSet" func={setter}/>
-			<Times elements={context.alarms} deleting={deleting}/>
-			
 		</div>
-
+		<Times elements={context.alarms} deleting={deleting}/>
+	</React.Fragment>
 	);
 	
 }

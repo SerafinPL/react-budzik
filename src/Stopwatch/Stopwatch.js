@@ -68,7 +68,7 @@ const CountdownTimer = (props) => {
 	}
 
 	return(
-
+		<React.Fragment>
 			<div className={classes.main}>
 				<p>Stoper</p>
 				<p id='Stopwatch'>{context.stopwatch}</p>
@@ -76,9 +76,10 @@ const CountdownTimer = (props) => {
 				<Button children={context.playState ? 'Stop' : 'Start'} classe="buttSet" func={startStop}/>
 				<Button children='Zeruj' classe="buttSet" func={toZero}/>
 				<Button children='Zapisz czas' classe="buttSet" func={setter}/>
-				<Times elements={context.stopList} deleting={deleting}/>
+				
 			</div>
-
+			<Times elements={context.stopList} deleting={deleting}/>
+		</React.Fragment>
 	);
 	
 }
