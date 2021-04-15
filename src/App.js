@@ -8,12 +8,10 @@ import CountdownTimerFunc from "./CountdownTimer/CountdownTimerFunc.js";
 import Stopwatch from "./Stopwatch/Stopwatch.js";
 import classes from './App.module.css';
 
+import FullContext from './context/context';
+
 const App = () => {
-  
- 
-
-
-
+   
 	return(
 			<React.Fragment>
 				<nav className={classes.navi}>

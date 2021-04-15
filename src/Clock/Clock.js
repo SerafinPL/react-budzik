@@ -1,17 +1,7 @@
-import React, {Component, useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 
 import "./Clock.css"
 
-// class Clock extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     //this.timer = this.timer.bind(this);
-
-//     this.state = {
-//       time: ""
-//     }
-//   }
 const Clock = (props) => {
 
   const [time, setStime] = useState('');
@@ -39,9 +29,6 @@ const Clock = (props) => {
     editTime += secondo;
 
     
-    // this.setState({
-    //   time: editTime
-    // });
     setStime(editTime);
 
   }
@@ -51,23 +38,13 @@ const Clock = (props) => {
     return () => {clearInterval(interval);}
   })
   
-  // componentDidMount() {
-    
-  //   this.interval = setInterval(this.timer,1000);
-  // }
-  
-  // componentWillUnmount() {
-  //   clearInterval(this.interval);
-  // }
 
-
-  //render(){
     return(
       <div className="clock">
         <p id="clock">{time}</p>
       </div>
     );
-  //}
+ 
 }
 
 export default Clock;
