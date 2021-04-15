@@ -4,7 +4,7 @@ import {NavLink, Route} from 'react-router-dom';
 
 import Button from "./Button/Button.js";
 import AlarmClock from "./AlarmClock/AlarmClock.js";
-import CountdownTimer from "./CountdownTimer/CountdownTimer.js";
+
 import CountdownTimerFunc from "./CountdownTimer/CountdownTimerFunc.js";
 import classes from './App.module.css';
 

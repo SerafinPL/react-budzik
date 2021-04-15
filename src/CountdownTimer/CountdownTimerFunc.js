@@ -62,61 +62,64 @@ const CountdownTimer = (props) => {
   		const times = [...timerState];
   		let newTimes = [];
   		let deleted = null; // zmienna zaznacza czy kasujemy ten element
-  			for(let i = 0;i < times.length ; i++){
-  				// v Wyodrębniamy godziny minuty i sekundy v
-  				let tg = Number(times[i].alarmClock.slice(0,2));
-  				let tm = Number(times[i].alarmClock.slice(3,5));
-  				let ts = Number(times[i].alarmClock.slice(6,8));
-  				  				
-  				let tns, tnm, tng;
-  				// v Robimy counting
-  				
-  				if (ts > 0){
-  					tns = ts-1
-  					tnm = tm;
-  					tng = tg;
-  				} else if (ts === 0 && tm > 0 ){
-  					tns = 59;
-  					tnm = tm -1;
-  					tng = tg;
-  				} else if (ts === 0 && tm === 0 && tg > 0){
-  					tns = 59;
-  					tnm = 59;
-  					tng = tg - 1;
-  				} else if ( ts === 0 && tm === 0 && tg === 0){
-  					// jeżeli doszlo do zera to muzyka i kasujemy wpis i zaznaczamy aby sie 
-  					// nie wpisał na nowo
-					document.getElementById("audio").play();
-  					window.alert('Odliczono do zera!!!')
-  					deleted = i;
-  				}
+		times.map((item, index) => { 
+		
+			// v Wyodrębniamy godziny minuty i sekundy v
+			let tg = Number(item.alarmClock.slice(0,2));
+			let tm = Number(item.alarmClock.slice(3,5));
+			let ts = Number(item.alarmClock.slice(6,8));
+			  				
+			let tns, tnm, tng;
+			// v Robimy counting
+			
+			if (ts > 0){
+				tns = ts-1
+				tnm = tm;
+				tng = tg;
+			} else if (ts === 0 && tm > 0 ){
+				tns = 59;
+				tnm = tm -1;
+				tng = tg;
+			} else if (ts === 0 && tm === 0 && tg > 0){
+				tns = 59;
+				tnm = 59;
+				tng = tg - 1;
+			} else if ( ts === 0 && tm === 0 && tg === 0){
+				// jeżeli doszlo do zera to muzyka i kasujemy wpis i zaznaczamy aby sie 
+				// nie wpisał na nowo
+				document.getElementById("audio").play();
+				window.alert('Odliczono do zera!!!')
+				deleted = index;
+			}
 
-  				// ustawiamy pomniejszony stan
-  				let timer = "";
+			// ustawiamy pomniejszony stan
+			let timer = "";
 
-				if (tng < 10){
-					timer = "0"; 
-				} 
-				timer += tng + ":";
+		if (tng < 10){
+			timer = "0"; 
+		} 
+		timer += tng + ":";
 
-				if (tnm < 10){
-					timer += "0"; 
-				} 
-				timer += tnm + ":";
+		if (tnm < 10){
+			timer += "0"; 
+		} 
+		timer += tnm + ":";
 
-				if (tns < 10){
-					timer += "0"; 
-				} 
-				timer += tns;
-				
-				if (i !== deleted){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
-									  // na nowo
-					newTimes.push( {  // ustaiwamy nowa tablice z pozostałych
-						alarmClock : timer,
-						key : times[i].key
-					});
-				}
-			} // for
+		if (tns < 10){
+			timer += "0"; 
+		} 
+		timer += tns;
+		
+		if (index !== deleted){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
+							  // na nowo
+			newTimes.push( {  // ustaiwamy nowa tablice z pozostałych
+				alarmClock : timer,
+				key : item.key
+			});
+		}
+	
+	return null;
+	}); // times.map
   			
   		if (newTimes !== undefined){ // blokada przed uzupełnianiem pusych tablic
   			setTimerState(newTimes);
