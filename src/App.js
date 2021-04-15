@@ -108,7 +108,7 @@ const App = () => {
   		let interval4;
 
   		if (playState) {
-  			interval4 = setInterval(countingUp,1);
+  			interval4 = setInterval(countingUp,10);
   		}
   		return () => {clearInterval(interval4);}
   	});
