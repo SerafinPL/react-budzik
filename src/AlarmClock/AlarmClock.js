@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useEffect, useContext} from "react";
 
 import Clock from "../Clock/Clock.js";
 import Display from "../Display/Display.js"
@@ -10,10 +10,7 @@ import FullContext from '../context/context';
 
 const AlarmClock = (props) => {
 	const context = useContext(FullContext);
-	//const [times, setTimes] = useState(context.alarms);
-
-
-	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
+	
 	const setter = () => {
 		const g = document.getElementById("hour").textContent;
 		const m = document.getElementById("min").textContent;
@@ -44,7 +41,6 @@ const AlarmClock = (props) => {
 			key : Date.now()
 		});
 
-		//setTimes(tablicaCzasow);
 		context.addAlarms(tablicaCzasow);
 				
 
@@ -56,9 +52,7 @@ const AlarmClock = (props) => {
 		let filter = /*times*/context.alarms.filter((item) => {
       		return (item.key !== keyring)
     	});
-
-    	
-    	//setTimes(filter);
+   	
     	context.addAlarms(filter);
 
   	} // deleting
@@ -89,7 +83,7 @@ const AlarmClock = (props) => {
   		const interval = setInterval(comparison,1000);
   		return () => clearInterval(interval);
   		// eslint-disable-next-line
-  	})
+  	});
 
 	
 	return(
