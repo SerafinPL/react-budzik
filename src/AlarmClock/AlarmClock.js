@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 
 import Clock from "../Clock/Clock.js";
 import Display from "../Display/Display.js"
@@ -6,9 +6,11 @@ import Button from "../Button/Button.js";
 import Times from "../Times/Times.js";
 import classes from './AlarmClock.module.css';
 
-const AlarmClock = (props) => {
+import FullContext from '../context/context';
 
-	const [times, setTimes] = useState([]);
+const AlarmClock = (props) => {
+	const context = useContext(FullContext);
+	//const [times, setTimes] = useState(context.alarms);
 
 
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
@@ -35,15 +37,15 @@ const AlarmClock = (props) => {
 		timer += s;
 
 
-		let tablicaCzasow = [...times];
+		let tablicaCzasow = [...context.alarms];//...times];
 
 		tablicaCzasow.unshift({
 			alarmClock : timer,
 			key : Date.now()
 		});
 
-		setTimes(tablicaCzasow);
-
+		//setTimes(tablicaCzasow);
+		context.addAlarms(tablicaCzasow);
 				
 
 	} //setter
@@ -51,20 +53,21 @@ const AlarmClock = (props) => {
 
 	const deleting = (keyring) => {
 
-		let filter = times.filter((item) => {
+		let filter = /*times*/context.alarms.filter((item) => {
       		return (item.key !== keyring)
     	});
 
     	
-    	setTimes(filter);
+    	//setTimes(filter);
+    	context.addAlarms(filter);
 
   	} // deleting
 
   	const comparison = () => {
-  		console.log('comparison');
-  		const newTimes = [...times]//this.state.times //document.getElementsByClassName("wpisy");
+  		
+  		const newTimes = [...context.alarms];//...times]//this.state.times //document.getElementsByClassName("wpisy");
   		const currentTime = document.getElementById("clock").textContent;
-  		console.log(newTimes);
+  		
   		
   		newTimes.map(index => {
 
@@ -97,7 +100,7 @@ const AlarmClock = (props) => {
 			<Display gardener="59" identy="min"/>
 			<Display gardener="59" identy="sec"/>
 			<Button children="Ustaw" classe="buttSet" func={setter}/>
-			<Times elements={times} deleting={deleting}/>
+			<Times elements={context.alarms} deleting={deleting}/>
 			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
 		</div>
 

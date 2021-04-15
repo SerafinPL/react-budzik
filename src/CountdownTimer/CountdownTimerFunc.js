@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 
 
 import Display from "../Display/Display.js"
@@ -6,11 +6,15 @@ import Button from "../Button/Button.js";
 import Times from "../Times/Times.js";
 import classes from './CountdownTimer.module.css';
 
+import FullContext from '../context/context';
+
 
 
 //class CountdownTimer extends React.Component {
 const CountdownTimer = (props) => {
 	
+	const context = useContext(FullContext);
+
 	const [timerState, setTimerState] = useState([]);
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
 	const setter = () =>{
