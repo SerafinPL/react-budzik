@@ -15,7 +15,7 @@ const CountdownTimer = (props) => {
 	
 	const context = useContext(FullContext);
 
-	const [timerState, setTimerState] = useState([]);
+	//const [timerState, setTimerState] = useState([]);
 	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
 	const setter = () =>{
 		const g = document.getElementById("hour").textContent;
@@ -39,31 +39,31 @@ const CountdownTimer = (props) => {
 		} 
 		timer += s;
 
-		let arrOfTimes = [...timerState];
+		let arrOfTimes = [...context.countdowns];//...timerState];
 
 		arrOfTimes.unshift({
 			alarmClock : timer,
 			key : Date.now()
 		});
-
-		setTimerState(arrOfTimes);
+		context.addCountdowns(arrOfTimes);
+		//setTimerState(arrOfTimes);
 		
 	}
 
 
 	const deleting = (keyring) => {
 
-		let filtering = timerState.filter((item) => {
+		let filtering = /*timerState*/context.countdowns.filter((item) => {
       		return (item.key !== keyring)
     	});
-
-		setTimerState(filtering);
+		context.addCountdowns(filtering);
+		//setTimerState(filtering);
     	
   	}
 
 
   	const counting = () => {
-  		const times = [...timerState];
+  		const times = [...context.countdowns];//...timerState];
   		let newTimes = [];
   		let deleted = null; // zmienna zaznacza czy kasujemy ten element
 		times.map((item, index) => { 
@@ -126,7 +126,8 @@ const CountdownTimer = (props) => {
 	}); // times.map
   			
   		if (newTimes !== undefined){ // blokada przed uzupełnianiem pusych tablic
-  			setTimerState(newTimes);
+  			//setTimerState(newTimes);
+  			context.addCountdowns(newTimes);
     	}
   	}
 
@@ -143,7 +144,7 @@ const CountdownTimer = (props) => {
 			<Display gardener="59" identy="min"/>
 			<Display gardener="59" identy="sec"/>
 			<Button children="Ustaw" classe="buttSet" func={setter}/>
-			<Times elements={timerState} deleting={deleting}/>
+			<Times elements={context.countdowns} deleting={deleting}/>
 			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
 			</div>
 
