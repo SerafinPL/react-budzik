@@ -62,7 +62,7 @@ const CountdownTimer = (props) => {
   	}
 
 
-  	const counting = () => {
+  	const countingDown = () => {
   		const times = [...context.countdowns];//...timerState];
   		let newTimes = [];
   		let deleted = null; // zmienna zaznacza czy kasujemy ten element
@@ -132,7 +132,7 @@ const CountdownTimer = (props) => {
   	}
 
   	useEffect(() => {
-		const interval = setInterval(counting,1000);
+		const interval = setInterval(countingDown,1000);
   		return () => {clearInterval(interval);}
   	})
 	

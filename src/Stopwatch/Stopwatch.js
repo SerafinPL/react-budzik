@@ -1,24 +1,29 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 
 
 import Button from "../Button/Button.js";
 import Times from "../Times/Times.js";
 import classes from './Stopwatch.module.css';
 
+import FullContext from '../context/context';
 
 
-//class CountdownTimer extends React.Component {
 const CountdownTimer = (props) => {
 	
-	const [stopwatchState, setStopwatchState] = useState('00:00:00:00');
+	const context = useContext(FullContext);
+
+	//const [stopwatchState, setStopwatchState] = useState('00:00:00:00');
 	const [playState, setPlayState] = useState(false);
-	const [stopList, setStopList] = useState([]);
+
+	//const [stopList, setStopList] = useState([]);
 	
+
+
 	const setter = () =>{
-		const g =  Number(stopwatchState.slice(0,2));
-		const m = Number(stopwatchState.slice(3,5));
-		const s = Number(stopwatchState.slice(6,8));
-		const ss = Number(stopwatchState.slice(9,11));
+		const g =  Number(context.stopwatch.slice(0,2));
+		const m = Number(context.stopwatch.slice(3,5));
+		const s = Number(context.stopwatch.slice(6,8));
+		const ss = Number(context.stopwatch.slice(9,11));
 		let timer = "";
 
 		if (g < 10){
@@ -40,33 +45,34 @@ const CountdownTimer = (props) => {
 		} 
 		timer += ss;
 
-		let arrOfTimes = [...stopList];
+		let arrOfTimes = [...context.stopList];//...stopList];
 
 		arrOfTimes.unshift({
 			alarmClock : timer,
 			key : new Date().getTime()
 		});
 
-		setStopList(arrOfTimes);
+		//setStopList(arrOfTimes);
+		context.addStopLists(arrOfTimes);
 		
 	}
 
 
 	const deleting = (keyring) => {
 
-		let filtering = stopList.filter((item) => {
+		let filtering = context.stopList.filter((item) => {
       		return (item.key !== keyring)
     	});
 
-		setStopList(filtering);
-    	
+		//setStopList(filtering);
+    	context.addStopLists(filtering);
   	}
 
 
-  	const counting = () => {
+  	const countingUp = () => {
   			
   		
-  			const time = stopwatchState;
+  			const time = context.stopwatch;
   					// v Wyodrębniamy godziny minuty i sekundy v
 			const tg = Number(time.slice(0,2));
 			const tm = Number(time.slice(3,5));
@@ -124,41 +130,41 @@ const CountdownTimer = (props) => {
 				timer += "0"; 
 			} 
 			timer += tnss;
-			
-			setStopwatchState(timer);
+			context.addStopwatch(timer);
+			//setStopwatchState(timer);
   	    	
   	}
 
   	useEffect(() => {
   		let interval;
 
-  		if (playState) {
-  			interval = setInterval(counting,10);
+  		if (context.playState) {
+  			interval = setInterval(countingUp,10);
   		}
   		return () => {clearInterval(interval);}
   	});
 
 
 	const startStop = () => {
-		setPlayState(curr => !curr);
+		context.changePlay(curr => !curr);
 	}
 
 	const toZero = () => {
 		
-		setStopwatchState('00:00:00:00');
-		setPlayState(false);
+		context.addStopwatch('00:00:00:00');
+		context.changePlay(false);
 	}
 
 	return(
 
 			<div className={classes.main}>
 				<p>Stoper</p>
-				<p id='Stopwatch'>{stopwatchState}</p>
+				<p id='Stopwatch'>{context.stopwatch}</p>
 				
-				<Button children={playState ? 'Stop' : 'Start'} classe="buttSet" func={startStop}/>
+				<Button children={context.playState ? 'Stop' : 'Start'} classe="buttSet" func={startStop}/>
 				<Button children='Zeruj' classe="buttSet" func={toZero}/>
 				<Button children='Zapisz czas' classe="buttSet" func={setter}/>
-				<Times elements={stopList} deleting={deleting}/>
+				<Times elements={context.stopList} deleting={deleting}/>
 			
 			</div>
 

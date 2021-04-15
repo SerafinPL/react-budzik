@@ -14,18 +14,28 @@ const App = () => {
    
 	const [alarms, setAlatms] = useState([]);
 	const [countdowns, setCountdowns] = useState([]);
-	const [stopwatch, setStopwatch] = useState('');
+	const [stopwatch, setStopwatch] = useState('00:00:00:00');
+	const [stopList, setstopList] = useState([]);
+	const [playState, setPlayState] = useState(false);
 
 	const addAlarms = (value) => {
 		setAlatms([...value]);
 	}
 
 	const addCountdowns = (value) => {
-		setCountdowns([...value])
+		setCountdowns([...value]);
 	}
 
 	const addStopwatch = (value) => {
 		setStopwatch(value);
+	}
+
+	const addStopLists = (value) => {
+		setstopList([...value]);
+	}
+
+	const changePlay = (value) => {
+		setPlayState(value);
 	}
 
 
@@ -35,9 +45,13 @@ const App = () => {
 					addAlarms: addAlarms,
 					addCountdowns: addCountdowns,
 					addStopwatch: addStopwatch,
+					addStopLists: addStopLists,
+					changePlay: changePlay,
 					alarms:  alarms,
 					countdowns: countdowns,
-					stopwatch: stopwatch
+					stopwatch: stopwatch,
+					stopList: stopList,
+					playState: playState
 
 				}}>
 					<nav className={classes.navi}>
