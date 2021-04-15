@@ -57,35 +57,7 @@ const AlarmClock = (props) => {
 
   	} // deleting
 
-  	const comparison = () => {
   		
-  		const newTimes = [...context.alarms];//...times]//this.state.times //document.getElementsByClassName("wpisy");
-  		const currentTime = document.getElementById("clock").textContent;
-  		
-  		
-  		newTimes.map(index => {
-
-  			let t = index.alarmClock.slice(0,8);
-
-  			if (t === currentTime){
-  				document.getElementById("audio").play();
-  				window.alert(currentTime);
-  				//deleting(newTimes[i].key);
-  			}
-  			return null;
-  		})
-  			
-  			
-  		
-  	} // comparison
-
-  	useEffect(() => {
-  		const interval = setInterval(comparison,1000);
-  		return () => clearInterval(interval);
-  		// eslint-disable-next-line
-  	});
-
-	
 	return(
 		<div className={classes.main}>
 			<p>Budzik</p>
@@ -95,7 +67,7 @@ const AlarmClock = (props) => {
 			<Display gardener="59" identy="sec"/>
 			<Button children="Ustaw" classe="buttSet" func={setter}/>
 			<Times elements={context.alarms} deleting={deleting}/>
-			<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
+			
 		</div>
 
 	);

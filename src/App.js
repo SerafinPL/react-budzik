@@ -38,10 +38,10 @@ const App = () => {
 	const changePlay = (value) => {
 		setPlayState(value);
 	}
-
+// StopWatch //
 	const countingUp = () => {
   			
-			const stopwatching = stopwatch;
+		const stopwatching = stopwatch;
 					// v Wyodrębniamy godziny minuty i sekundy v
 		const tg = Number(stopwatching.slice(0,2));
 		const tm = Number(stopwatching.slice(3,5));
@@ -105,18 +105,18 @@ const App = () => {
 
 
   	useEffect(() => {
-  		let interval;
+  		let interval4;
 
   		if (playState) {
-  			interval = setInterval(countingUp,10);
+  			interval4 = setInterval(countingUp,1);
   		}
-  		return () => {clearInterval(interval);}
+  		return () => {clearInterval(interval4);}
   	});
-
+//CLOCK //
   	const timer = () => {
 
 	    const dd = new Date();
-
+	    console.log(dd);
 	    let editTime = '';
 	    const hour = dd.getHours();
 	    if (hour < 10) {
@@ -139,11 +139,118 @@ const App = () => {
 	    setTime(editTime);
   	}
 
-  useEffect(() => {
+  const comparisonAlarm = () => {
+  		
+  		const newTimes = [...alarms];//...times]//this.state.times //document.getElementsByClassName("wpisy");
+  		const currentTime = time;//document.getElementById("clock").textContent;
+  		
+  		
+  		newTimes.map(index => {
 
+  			let t = index.alarmClock.slice(0,8);
+  			
+  			if (t === currentTime){
+  				document.getElementById("audio").play();
+  				window.alert(currentTime);
+  				//deleting(newTimes[i].key);
+  			}
+  			return null;
+  		})
+  	} // comparison
+
+
+  	useEffect(() => {
+  		
     const interval = setInterval(timer,1000);
-    return () => {clearInterval(interval);}
-  })
+    ;
+    return () => {	
+    	clearInterval(interval);}
+  	},[]);		
+  		
+  	
+
+  	useEffect(() => {
+  		
+  		const interval2 = setInterval(comparisonAlarm,500);
+   		return () => {clearInterval(interval2);}
+  		// eslint-disable-next-line
+  	 },[time]);
+
+
+  	const countingDown = () => {
+  		const times = [...countdowns];//...timerState];
+  		let newTimes = [];
+  		let deleted = null; // zmienna zaznacza czy kasujemy ten element
+  		console.log('times',times);
+		times.map((item, index) => { 
+		
+			// v Wyodrębniamy godziny minuty i sekundy v
+			let tg = Number(item.alarmClock.slice(0,2));
+			let tm = Number(item.alarmClock.slice(3,5));
+			let ts = Number(item.alarmClock.slice(6,8));
+			  				
+			let tns, tnm, tng;
+			// v Robimy counting
+			
+			if (ts > 0){
+				tns = ts-1
+				tnm = tm;
+				tng = tg;
+			} else if (ts === 0 && tm > 0 ){
+				tns = 59;
+				tnm = tm -1;
+				tng = tg;
+			} else if (ts === 0 && tm === 0 && tg > 0){
+				tns = 59;
+				tnm = 59;
+				tng = tg - 1;
+			} else if ( ts === 0 && tm === 0 && tg === 0){
+				// jeżeli doszlo do zera to muzyka i kasujemy wpis i zaznaczamy aby sie 
+				// nie wpisał na nowo
+				document.getElementById("audio").play();
+				window.alert('Odliczono do zera!!!')
+				deleted = index;
+			}
+
+			// ustawiamy pomniejszony stan
+			let timer = "";
+
+			if (tng < 10){
+				timer = "0"; 
+			} 
+			timer += tng + ":";
+
+			if (tnm < 10){
+				timer += "0"; 
+			} 
+			timer += tnm + ":";
+
+			if (tns < 10){
+				timer += "0"; 
+			} 
+			timer += tns;
+			
+			if (index !== deleted){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
+								  // na nowo
+				newTimes.push( {  // ustaiwamy nowa tablice z pozostałych
+					alarmClock : timer,
+					key : item.key
+				});
+			}
+	
+	return null;
+	}); // times.map
+  			
+  		if (newTimes !== undefined){ // blokada przed uzupełnianiem pusych tablic
+  			//setTimerState(newTimes);
+  			addCountdowns(newTimes);
+    	}
+  	}
+
+  	useEffect(() => {
+		const interval3 = setInterval(countingDown,1000);
+  		return () => {clearInterval(interval3);}
+  	},[countdowns]);
 
 	return(
 			<React.Fragment>
@@ -175,6 +282,8 @@ const App = () => {
 						<Redirect to='/alarmclock' />
 					</Switch>
 				</FullContext.Provider>
+				<audio id="audio" src= "http://greenmp3.pl/dzwonki/3541.mp3"></audio>
+
 			</React.Fragment>
 		);
 }

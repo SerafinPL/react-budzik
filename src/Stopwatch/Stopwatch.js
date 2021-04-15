@@ -80,7 +80,6 @@ const CountdownTimer = (props) => {
 				<Button children='Zeruj' classe="buttSet" func={toZero}/>
 				<Button children='Zapisz czas' classe="buttSet" func={setter}/>
 				<Times elements={context.stopList} deleting={deleting}/>
-			
 			</div>
 
 	);
