@@ -16,7 +16,7 @@ const CountdownTimer = (props) => {
 		const g =  Number(context.stopwatch.slice(0,2));
 		const m = Number(context.stopwatch.slice(3,5));
 		const s = Number(context.stopwatch.slice(6,8));
-		const ss = Number(context.stopwatch.slice(9,11));
+		
 		let timer = "";
 
 		if (g < 10){
@@ -32,11 +32,8 @@ const CountdownTimer = (props) => {
 		if (s < 10){
 			timer += "0"; 
 		} 
-		timer += s + ":";
-		if (ss < 10){
-			timer += "0"; 
-		} 
-		timer += ss;
+		timer += s;
+		
 
 		let arrOfTimes = [...context.stopList];//...stopList];
 
@@ -66,7 +63,7 @@ const CountdownTimer = (props) => {
 
 	const toZero = () => {
 		
-		context.addStopwatch('00:00:00:00');
+		context.addStopwatch('00:00:00');
 		context.changePlay(false);
 	}
 

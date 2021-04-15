@@ -28,6 +28,8 @@ const Display = (props) => {
 		} else {
 			setValue(curr => curr - 1);
 		}
+
+		
 	}
 
 	return(
