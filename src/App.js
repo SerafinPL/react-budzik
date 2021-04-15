@@ -116,7 +116,7 @@ const App = () => {
 			timer += "0"; 
 		} 
 		timer += tns;
-		console.log(timer);
+		
 		addStopwatch(timer);
 		  	    	
   	}
