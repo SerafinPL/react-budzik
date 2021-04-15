@@ -112,11 +112,12 @@ const App = () => {
   		}
   		return () => {clearInterval(interval4);}
   	});
+
 //CLOCK //
   	const timer = () => {
 
 	    const dd = new Date();
-	    console.log(dd);
+	    
 	    let editTime = '';
 	    const hour = dd.getHours();
 	    if (hour < 10) {
@@ -151,7 +152,7 @@ const App = () => {
   			
   			if (t === currentTime){
   				document.getElementById("audio").play();
-  				window.alert(currentTime);
+  				window.alert('Budzik ustawiono na: ' + currentTime);
   				//deleting(newTimes[i].key);
   			}
   			return null;
@@ -181,7 +182,7 @@ const App = () => {
   		const times = [...countdowns];//...timerState];
   		let newTimes = [];
   		let deleted = null; // zmienna zaznacza czy kasujemy ten element
-  		console.log('times',times);
+  		
 		times.map((item, index) => { 
 		
 			// v Wyodrębniamy godziny minuty i sekundy v
@@ -208,7 +209,7 @@ const App = () => {
 				// jeżeli doszlo do zera to muzyka i kasujemy wpis i zaznaczamy aby sie 
 				// nie wpisał na nowo
 				document.getElementById("audio").play();
-				window.alert('Odliczono do zera!!!')
+				window.alert('Minutnik odliczył do zera!!')
 				deleted = index;
 			}
 

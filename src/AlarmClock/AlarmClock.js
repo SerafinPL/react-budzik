@@ -1,4 +1,4 @@
-import React, { useEffect, useContext} from "react";
+import React, {useContext} from "react";
 
 import Clock from "../Clock/Clock.js";
 import Display from "../Display/Display.js"
@@ -38,7 +38,7 @@ const AlarmClock = (props) => {
 
 		tablicaCzasow.unshift({
 			alarmClock : timer,
-			key : Date.now()
+			key : new Date().getTime()
 		});
 
 		context.addAlarms(tablicaCzasow);

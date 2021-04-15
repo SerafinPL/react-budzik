@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from "react";
+import React, {useContext} from "react";
 
 
 import Display from "../Display/Display.js"
@@ -43,7 +43,7 @@ const CountdownTimer = (props) => {
 
 		arrOfTimes.unshift({
 			alarmClock : timer,
-			key : Date.now()
+			key : new Date().getTime()
 		});
 		context.addCountdowns(arrOfTimes);
 		//setTimerState(arrOfTimes);
