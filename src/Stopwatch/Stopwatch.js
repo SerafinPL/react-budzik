@@ -141,9 +141,14 @@ const CountdownTimer = (props) => {
 
 	const startStop = () => {
 		setPlayState(curr => !curr);
-		
 	}
-	
+
+	const toZero = () => {
+		
+		setStopwatchState('00:00:00:00');
+		setPlayState(false);
+	}
+
 	return(
 
 			<div className={classes.main}>
@@ -151,6 +156,7 @@ const CountdownTimer = (props) => {
 				<p id='Stopwatch'>{stopwatchState}</p>
 				
 				<Button children={playState ? 'Stop' : 'Start'} classe="buttSet" func={startStop}/>
+				<Button children='Zeruj' classe="buttSet" func={toZero}/>
 				<Button children='Zapisz czas' classe="buttSet" func={setter}/>
 				<Times elements={stopList} deleting={deleting}/>
 			
