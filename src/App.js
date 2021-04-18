@@ -75,7 +75,6 @@ const App = () => {
 			} 
 			timer += s;
 		}
-		console.log(timer);
 		return timer;
 	}
 
@@ -102,14 +101,11 @@ const App = () => {
 /*CLOCK */
   	const timer = () => {
 
-	    //const dd = new Date();
 	    const tng = Number( new Date().getHours() );
 	    const tnm = Number( new Date().getMinutes() );
 	    const tns = Number( new Date().getSeconds() );
 
 	    setTime(timing(tng, tnm, tns));
-
-	    //setTime(editTime);
   	}
 
   	useEffect(() => {
@@ -126,15 +122,14 @@ const App = () => {
   const comparisonAlarm = () => {
   		
   		const newTimes = [...alarms];//...times]//this.state.times //document.getElementsByClassName("wpisy");
-  		const currentTime = time;//document.getElementById("clock").textContent;
-  		
+  		  		
   		newTimes.map(index => {
 
   			let t = index.alarmClock.slice(0,8);
   			
-  			if (t === currentTime){
+  			if (t === time){
   				document.getElementById("audio").play();
-  				window.alert('Budzik ustawiono na: ' + currentTime);
+  				window.alert('Budzik ustawiono na: ' + time);
   				//deleting(newTimes[i].key);
   			}
   			return null;
@@ -156,36 +151,7 @@ const App = () => {
   		let deleted = null; // zmienna zaznacza czy kasujemy ten element
   		
 		times.map((item, index) => { 
-			
-			// v Wyodrębniamy godziny minuty i sekundy v
-			// let tg = Number(item.alarmClock.slice(0,2));
-			// let tm = Number(item.alarmClock.slice(3,5));
-			// let ts = Number(item.alarmClock.slice(6,8));
-			  				
-			// let tns, tnm, tng;
-			// // v Robimy counting
-			
-			// if (ts > 0){
-			// 	tns = ts-1
-			// 	tnm = tm;
-			// 	tng = tg;
-			// } else if (ts === 0 && tm > 0 ){
-			// 	tns = 59;
-			// 	tnm = tm -1;
-			// 	tng = tg;
-			// } else if (ts === 0 && tm === 0 && tg > 0){
-			// 	tns = 59;
-			// 	tnm = 59;
-			// 	tng = tg - 1;
-			// } else if ( ts === 0 && tm === 0 && tg === 0){
-			// 	// jeżeli doszlo do zera to muzyka i kasujemy wpis i zaznaczamy aby sie 
-			// 	// nie wpisał na nowo
-			// 	document.getElementById("audio").play();
-			// 	window.alert('Minutnik odliczył do zera!!')
-			// 	deleted = index;
-			// }
-
-			let tns, tnm, tng, baseTime;
+			let tns, tnm, tng;
 			let timer = "";
 
 			if (item.countdownTime <= new Date()) {
@@ -193,32 +159,15 @@ const App = () => {
 				window.alert('Minutnik odliczył do zera!!')
 				deleted = index;
 			} else {
-				//tng = item.countdownTime.getHours();
-
-				baseTime = new Date( item.countdownTime.getTime() - new Date().getTime() );
+				const baseTime = new Date( (item.countdownTime.getTime()+1000) - new Date().getTime() );
 				
 				tng = new Date(baseTime-3600000).getHours();
 				tnm = new Date(baseTime).getMinutes();
 				tns = new Date(baseTime).getSeconds();
-
-				if (tng < 10){
-					timer = "0"; 
-				} 
-				timer += tng + ":";
-
-				if (tnm < 10){
-					timer += "0"; 
-				} 
-				timer += tnm + ":";
-
-				if (tns < 10){
-					timer += "0"; 
-				} 
-				timer += tns;
+				timer = timing(tng, tnm, tns);
 			};
 
 			// ustawiamy pomniejszony stan
-						
 			if (index !== deleted){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
 								  // na nowo
 				newTimes.push( {  // ustaiwamy nowa tablice z pozostałych
@@ -228,12 +177,11 @@ const App = () => {
 				});
 			}
 	
-	return null;
-	}); // times.map
+			return null;
+		}); // times.map
   			
   		if (newTimes !== undefined){ // blokada przed uzupełnianiem pusych tablic
-  			//setTimerState(newTimes);
-  			addCountdowns(newTimes);
+  			setCountdowns(newTimes);
     	}
   	}
 

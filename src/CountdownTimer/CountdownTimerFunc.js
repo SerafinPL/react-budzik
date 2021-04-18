@@ -25,7 +25,7 @@ const CountdownTimer = (props) => {
 		const countdownStartTime = new Date( new Date().getTime() +
 		  				( (g * 3600 * 1000)  + 
 		  				(m * 60 * 1000) + 
-		  				( (s * 1000 ) -1 )  ) );
+		  				( s * 1000  )  ) );
 
   		const countdownLeft = new Date( countdownStartTime.getTime() - new Date().getTime() );	
   		
