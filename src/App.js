@@ -10,6 +10,10 @@ import classes from './App.module.css';
 
 import FullContext from './context/context';
 
+import useTime from './ownHook/timeHook';
+
+
+
 const App = () => {
    	// czas aktualny
    	const [time, setTime] = useState('');
@@ -32,41 +36,61 @@ const App = () => {
 	const addStopLists = (value) => { setstopList([...value]); };
 	const changePlay = (value) => { setPlayState(value); };
 
+	const timing = (g, m, s, ss) => {
+		let timer = '';
+		if (ss || ss === 0) {
+
+			if (g < 10){
+				timer = "0"; 
+			} 
+			timer += g + ":";
+
+			if (m < 10){
+				timer += "0"; 
+			} 
+			timer += m + ":";
+
+			if (s < 10){
+				timer += "0"; 
+			} 
+			timer += s + ":";
+			if (ss < 10){
+				timer += "0"; 
+			} 
+			timer += ss;
+
+		} else {
+			if (g < 10){
+				timer = "0"; 
+			} 
+			timer += g + ":";
+
+			if (m < 10){
+				timer += "0"; 
+			} 
+			timer += m + ":";
+
+			if (s < 10){
+				timer += "0"; 
+			} 
+			timer += s;
+		}
+		console.log(timer);
+		return timer;
+	}
 
 /*  COUNTING UP STOPWATCH */
 	const countingUp = () => {
   		
 		const StopWatchTime = new Date().getTime() - startTimeSW;
-		//ustawiamy powiększony stan
-		const tng = new Date(StopWatchTime-3600000).getHours();
-		const tnm = new Date(StopWatchTime).getMinutes();		
-		const tns = new Date(StopWatchTime).getSeconds();
-		const tnss = Math.floor(new Date(StopWatchTime).getMilliseconds() / 10) ;		
+		//ustawiamy stan
+		const tng = Number( new Date(StopWatchTime-3600000).getHours() );
+		const tnm = Number( new Date(StopWatchTime).getMinutes() );		
+		const tns = Number( new Date(StopWatchTime).getSeconds() );
+		const tnss = Number( Math.floor(new Date(StopWatchTime).getMilliseconds() / 10) );		
 
-		let timer = "";
-
-		if (tng < 10){
-			timer = "0"; 
-		} 
-		timer += tng + ":";
-
-		if (tnm < 10){
-			timer += "0"; 
-		} 
-		timer += tnm + ":";
-
-		if (tns < 10){
-			timer += "0"; 
-		} 
-		timer += tns + ":";
-		if (tnss < 10){
-			timer += "0"; 
-		} 
-		timer += tnss;
-
-		setStopwatch(timer);
-		  	    	
-  	}
+		setStopwatch(timing(tng, tnm, tns, tnss));
+ 	}
   	useEffect(() => {
   		let interval4;
   		if (playState) {
@@ -78,28 +102,14 @@ const App = () => {
 /*CLOCK */
   	const timer = () => {
 
-	    const dd = new Date();
-	    
-	    let editTime = '';
-	    const hour = dd.getHours();
-	    if (hour < 10) {
-	      editTime += '0';
-	    }
-	    editTime = hour + ':';
+	    //const dd = new Date();
+	    const tng = Number( new Date().getHours() );
+	    const tnm = Number( new Date().getMinutes() );
+	    const tns = Number( new Date().getSeconds() );
 
-	    const min = dd.getMinutes();
-	    if (min < 10) {
-	      editTime += '0';
-	    }
-	    editTime += min + ':';
-	    const secondo = dd.getSeconds();
-	    if (secondo < 10) {
-	      editTime += '0';
-	    }
-	    editTime += secondo;
+	    setTime(timing(tng, tnm, tns));
 
-	    
-	    setTime(editTime);
+	    //setTime(editTime);
   	}
 
   	useEffect(() => {
@@ -229,8 +239,7 @@ const App = () => {
 
   	useEffect(() => {
 		const interval3 = setInterval(countingDown,1000);
-		console.log(countdowns);
-  		return () => {clearInterval(interval3);}
+		return () => {clearInterval(interval3);}
   	},[countdowns]);
 
 	return(
