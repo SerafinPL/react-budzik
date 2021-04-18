@@ -26,8 +26,8 @@ const CountdownTimer = (props) => {
 		  				( (g * 3600 * 1000)  + 
 		  				(m * 60 * 1000) + 
 		  				(s * 1000) ) );
-  		
-  		const countdownLeft = new Date( countdownStartTime - new Date().getTime() );	
+		  		
+  		const countdownLeft = new Date( countdownStartTime.getTime() - new Date().getTime() );	
   		
   		const tng = new Date(countdownLeft-3600000).getHours();
 		const tnm = new Date(countdownLeft).getMinutes();		

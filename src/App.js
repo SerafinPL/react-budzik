@@ -175,36 +175,40 @@ const App = () => {
 			// 	deleted = index;
 			// }
 
-			let tns, tnm, tng;
+			let tns, tnm, tng, baseTime;
+			let timer = "";
 
-			if (item.countdownTime === new Date()) {
+			if (item.countdownTime <= new Date()) {
 				document.getElementById("audio").play();
 				window.alert('Minutnik odliczył do zera!!')
 				deleted = index;
 			} else {
-				tng = item.countdownTime.getHours();
-				tnm = item.countdownTime.getMinutes();
-				tns = item.countdownTime.getSeconds();
-			} ;
+				//tng = item.countdownTime.getHours();
+
+				baseTime = new Date( item.countdownTime.getTime() - new Date().getTime() );
+				
+				tng = new Date(baseTime-3600000).getHours();
+				tnm = new Date(baseTime).getMinutes();
+				tns = new Date(baseTime).getSeconds();
+
+				if (tng < 10){
+					timer = "0"; 
+				} 
+				timer += tng + ":";
+
+				if (tnm < 10){
+					timer += "0"; 
+				} 
+				timer += tnm + ":";
+
+				if (tns < 10){
+					timer += "0"; 
+				} 
+				timer += tns;
+			};
 
 			// ustawiamy pomniejszony stan
-			let timer = "";
-
-			if (tng < 10){
-				timer = "0"; 
-			} 
-			timer += tng + ":";
-
-			if (tnm < 10){
-				timer += "0"; 
-			} 
-			timer += tnm + ":";
-
-			if (tns < 10){
-				timer += "0"; 
-			} 
-			timer += tns;
-			
+						
 			if (index !== deleted){ // sprawdzamy czy wpis nie jest skaowany żeby nie wszedl 
 								  // na nowo
 				newTimes.push( {  // ustaiwamy nowa tablice z pozostałych
@@ -225,6 +229,7 @@ const App = () => {
 
   	useEffect(() => {
 		const interval3 = setInterval(countingDown,1000);
+		console.log(countdowns);
   		return () => {clearInterval(interval3);}
   	},[countdowns]);
 
