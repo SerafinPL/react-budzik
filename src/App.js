@@ -86,41 +86,43 @@ const App = () => {
 		// 	tng = 0;
 		// } 
 
-		const StopWatchTime = new Date().getTime() - startTimeSW
+		const StopWatchTime = new Date().getTime() - startTimeSW;
+		
+		//ustawiamy powiększony stan
+		const tng = new Date(StopWatchTime-3600000).getHours();
+		const tnm = new Date(StopWatchTime).getMinutes();		
+		const tns = new Date(StopWatchTime).getSeconds();
+		const tnss = Math.floor(new Date(StopWatchTime).getMilliseconds() / 10) ;		
 
-		// ustawiamy powiększony stan
-		// let timer = "";
+		let timer = "";
 
-		// if (tng < 10){
-		// 	timer = "0"; 
-		// } 
-		// timer += tng + ":";
+		if (tng < 10){
+			timer = "0"; 
+		} 
+		timer += tng + ":";
 
-		// if (tnm < 10){
-		// 	timer += "0"; 
-		// } 
-		// timer += tnm + ":";
+		if (tnm < 10){
+			timer += "0"; 
+		} 
+		timer += tnm + ":";
 
-		// if (tns < 10){
-		// 	timer += "0"; 
-		// } 
-		// timer += tns + ":";
-		// if (tnss < 10){
-		// 	timer += "0"; 
-		// } 
-		// timer += tnss;
+		if (tns < 10){
+			timer += "0"; 
+		} 
+		timer += tns + ":";
+		if (tnss < 10){
+			timer += "0"; 
+		} 
+		timer += tnss;
 
-
-		console.log(StopWatchTime);
-		//setStopwatch(timer);
+		setStopwatch(timer);
 		  	    	
   	}
 
 
   	useEffect(() => {
   		let interval4;
-  		console.log('useEffect');
-  		console.log(playState);
+  		
   		if (playState) {
   			interval4 = setInterval(countingUp,10);
   		}

@@ -16,6 +16,7 @@ const CountdownTimer = (props) => {
 		const g =  Number(context.stopwatch.slice(0,2));
 		const m = Number(context.stopwatch.slice(3,5));
 		const s = Number(context.stopwatch.slice(6,8));
+		const ss = Number(context.stopwatch.slice(9,11));
 		
 		let timer = "";
 
@@ -32,7 +33,11 @@ const CountdownTimer = (props) => {
 		if (s < 10){
 			timer += "0"; 
 		} 
-		timer += s;
+		timer += s + ":";
+		if (ss < 10){
+			timer += "0"; 
+		} 
+		timer += ss;
 		
 
 		let arrOfTimes = [...context.stopList];//...stopList];
@@ -67,11 +72,11 @@ const CountdownTimer = (props) => {
 			const tss = Number(context.stopwatch.slice(9,11));
 
   			const stopWatchTime = new Date().getTime() -
-  				((tg * 3600 * 1000) + 
+  				( (tg * 3600 * 1000)  + 
   				(tm * 60 * 1000) + 
   				(ts * 1000) + 
-  				(tss * 10));
-
+  				(tss * 10) );
+  			
   			context.setStartTimeSW(stopWatchTime);
   		}
   		
@@ -80,9 +85,10 @@ const CountdownTimer = (props) => {
 	}
 
 	const toZero = () => {
-		
 		context.addStopwatch('00:00:00:00');
 		context.changePlay(false);
+		
+		
 	}
 
 	return(
@@ -92,7 +98,7 @@ const CountdownTimer = (props) => {
 				<p id='Stopwatch'>{context.stopwatch}</p>
 				
 				<Button children={context.playState ? 'Stop' : 'Start'} classe="buttSet" func={startStop}/>
-				<Button children='Zeruj' classe="buttSet" func={toZero}/>
+				<Button children='Zeruj' classe="buttSet" func={toZero} onMDown={toZero}/>
 				<Button children='Zapisz czas' classe="buttSet" func={setter}/>
 				
 			</div>
