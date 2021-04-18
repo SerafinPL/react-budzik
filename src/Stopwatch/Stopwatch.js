@@ -17,33 +17,11 @@ const CountdownTimer = (props) => {
 		const m = Number(context.stopwatch.slice(3,5));
 		const s = Number(context.stopwatch.slice(6,8));
 		const ss = Number(context.stopwatch.slice(9,11));
-		
-		let timer = "";
 
-		if (g < 10){
-			timer = "0"; 
-		} 
-		timer += g + ":";
-
-		if (m < 10){
-			timer += "0"; 
-		} 
-		timer += m + ":";
-
-		if (s < 10){
-			timer += "0"; 
-		} 
-		timer += s + ":";
-		if (ss < 10){
-			timer += "0"; 
-		} 
-		timer += ss;
-		
-
-		let arrOfTimes = [...context.stopList];//...stopList];
+		let arrOfTimes = [...context.stopList];
 
 		arrOfTimes.unshift({
-			alarmClock : timer,
+			alarmClock : context.timing(g, m, s, ss),
 			key : new Date().getTime()
 		});
 
@@ -51,16 +29,12 @@ const CountdownTimer = (props) => {
 		
 	}
 
+	const deleting = keyring => {
 
-	const deleting = (keyring) => {
-
-		let filtering = context.stopList.filter((item) => {
-      		return (item.key !== keyring)
-    	});
+		let filtering = context.stopList.filter( item => item.key !== keyring );
 
 		context.addStopLists(filtering);
   	}
-
 
   	const startStop = () => {
   		if (context.stopwatch === '00:00:00:00'){
@@ -81,14 +55,11 @@ const CountdownTimer = (props) => {
   		}
   		
 		context.changePlay(curr => !curr);
-
 	}
 
 	const toZero = () => {
 		context.addStopwatch('00:00:00:00');
 		context.changePlay(false);
-		
-		
 	}
 
 	return(

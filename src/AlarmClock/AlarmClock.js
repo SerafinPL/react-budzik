@@ -16,44 +16,22 @@ const AlarmClock = (props) => {
 		const m = document.getElementById("min").textContent;
 		const s = document.getElementById("sec").textContent;
 
-		let timer = "";
+		let arrOfTimes = [...context.alarms];//...times];
 
-		if (g < 10){
-			timer = "0"; 
-		} 
-		timer += g + ":";
-
-		if (m < 10){
-			timer += "0"; 
-		} 
-		timer += m + ":";
-
-		if (s < 10){
-			timer += "0"; 
-		} 
-		timer += s;
-
-
-		let tablicaCzasow = [...context.alarms];//...times];
-
-		tablicaCzasow.unshift({
-			alarmClock : timer,
+		arrOfTimes.unshift({
+			alarmClock : context.timing(g, m, s),
 			key : new Date().getTime()
 		});
 
-		context.addAlarms(tablicaCzasow);
-				
+		context.addAlarms(arrOfTimes);
 
 	} //setter
 
 
-	const deleting = (keyring) => {
+	const deleting = keyring => {
 
-		let filter = /*times*/context.alarms.filter((item) => {
-      		return (item.key !== keyring)
-    	});
-   	
-    	context.addAlarms(filter);
+		let filter = context.alarms.filter( item => item.key !== keyring );
+   	   	context.addAlarms(filter);
 
   	} // deleting
 
@@ -73,11 +51,5 @@ const AlarmClock = (props) => {
 	);
 	
 }
-
-
-
-
-  	
-
 
 export default AlarmClock;

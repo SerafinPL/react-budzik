@@ -15,7 +15,6 @@ const CountdownTimer = (props) => {
 	
 	const context = useContext(FullContext);
 
-	
 	const setter = () =>{
 		const g = document.getElementById("hour").textContent;
 		const m = document.getElementById("min").textContent;
@@ -33,25 +32,6 @@ const CountdownTimer = (props) => {
 		const tnm = new Date(countdownLeft).getMinutes();		
 		const tns = new Date(countdownLeft).getSeconds();
 
-		// let timer = "";
-
-		// if (tng < 10){
-		// 	timer = "0"; 
-		// } 
-		// timer += tng + ":";
-
-		// if (tnm < 10){
-		// 	timer += "0"; 
-		// } 
-		// timer += tnm + ":";
-
-		// if (tns < 10){
-		// 	timer += "0"; 
-		// } 
-		// timer += tns;
-
-		
-
 		let arrOfTimes = [...context.countdowns];
 
 		arrOfTimes.unshift({
@@ -63,15 +43,11 @@ const CountdownTimer = (props) => {
 				
 	}
 
+	const deleting = keyring => {
 
-	const deleting = (keyring) => {
-
-		let filtering = /*timerState*/context.countdowns.filter((item) => {
-      		return (item.key !== keyring)
-    	});
+		let filtering = context.countdowns.filter( item => item.key !== keyring );
 		context.addCountdowns(filtering);
-		//setTimerState(filtering);
-  	}
+	}
 
 	return(
 		<React.Fragment>
