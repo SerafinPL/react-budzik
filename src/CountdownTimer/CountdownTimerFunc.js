@@ -22,6 +22,17 @@ const CountdownTimer = (props) => {
 		const m = document.getElementById("min").textContent;
 		const s = document.getElementById("sec").textContent;
 
+		const countdownStartTime = new Date( new Date().getTime() +
+		  				( (g * 3600 * 1000)  + 
+		  				(m * 60 * 1000) + 
+		  				(s * 1000) ) );
+  		
+  		const countdownLeft = new Date( countdownStartTime - new Date().getTime() );	
+  		
+  		const tng = new Date(countdownLeft-3600000).getHours();
+		const tnm = new Date(countdownLeft).getMinutes();		
+		const tns = new Date(countdownLeft).getSeconds();
+
 		let timer = "";
 
 		if (g < 10){
@@ -39,10 +50,13 @@ const CountdownTimer = (props) => {
 		} 
 		timer += s;
 
+
+
 		let arrOfTimes = [...context.countdowns];//...timerState];
 
 		arrOfTimes.unshift({
-			alarmClock : timer,
+			countdownTime : countdownStartTime,
+			alarmClock: timer,
 			key : new Date().getTime()
 		});
 		context.addCountdowns(arrOfTimes);
@@ -60,6 +74,8 @@ const CountdownTimer = (props) => {
 		//setTimerState(filtering);
     	
   	}
+
+
 
 	return(
 		<React.Fragment>
