@@ -61,10 +61,6 @@ const CountdownTimer = (props) => {
     	
   	}
 
-
-  	
-	
-	
 	return(
 		<React.Fragment>
 			<div className={classes.main}>

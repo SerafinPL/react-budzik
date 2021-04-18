@@ -11,83 +11,32 @@ import classes from './App.module.css';
 import FullContext from './context/context';
 
 const App = () => {
-   
+   	// czas aktualny
    	const [time, setTime] = useState('');
+   	//lista alarmów
 	const [alarms, setAlatms] = useState([]);
+	//lista minutników
 	const [countdowns, setCountdowns] = useState([]);
+	// aktualny stan stopera
 	const [stopwatch, setStopwatch] = useState('00:00:00:00');
+	// lista odmierzonych czasów stopera
 	const [stopList, setstopList] = useState([]);
+	// stan on/off stopera
 	const [playState, setPlayState] = useState(false);
-
+	// czas początkowy dla stopera
 	const [startTimeSW, setStartTimeSW] = useState(0);
 
-	const addAlarms = (value) => {
-		setAlatms([...value]);
-	}
-
-	const addCountdowns = (value) => {
-		setCountdowns([...value]);
-	}
-
-	const addStopwatch = (value) => {
-		setStopwatch(value);
-	}
-
-	const addStopLists = (value) => {
-		setstopList([...value]);
-	}
-
-	const changePlay = (value) => {
-		setPlayState(value);
-	}
+	const addAlarms = (value) => { setAlatms([...value]); };
+	const addCountdowns = (value) => { setCountdowns([...value]); };
+	const addStopwatch = (value) => { setStopwatch(value); };
+	const addStopLists = (value) => { setstopList([...value]); };
+	const changePlay = (value) => { setPlayState(value); };
 
 
 /*  COUNTING UP STOPWATCH */
 	const countingUp = () => {
-  			
-		// v Wyodrębniamy godziny minuty i sekundy v
-		// const tg = Number(stopwatch.slice(0,2));
-		// const tm = Number(stopwatch.slice(3,5));
-		// const ts = Number(stopwatch.slice(6,8));
-		// const tss = Number(stopwatch.slice(9,11));
-		
-		// const stopWatchTime = (tg * 3600 * 1000) + (tm * 60 * 1000) + (ts * 1000) + (tss * 10);
-
-		// let startTime = new Date().getTime() + stopWatchTime;
-
-		// console.log(startTimeSW);
-		  				
-		// let tnss, tns, tnm, tng;
-		// // v Robimy counting
-		// if (tss < 99) {
-		// 	tnss = tss +1;
-		// 	tns = ts;
-		// 	tnm = tm;
-		// 	tng = tg;
-		// } else if (tss === 99 && ts < 59) {
-		// 	tnss = 0;
-		// 	tns = ts + 1;
-		// 	tnm = tm;
-		// 	tng = tg;
-		// } else if (tss === 99 && ts === 59 && tm < 59) {
-		// 	tnss = 0;
-		// 	tns = 0;
-		// 	tnm = tm + 1;
-		// 	tng = tg;
-		// } else if (tss === 99 && ts === 59 && tm === 59 && tg < 23) {
-		// 	tnss = 0;
-		// 	tns = 0;
-		// 	tnm = 0;
-		// 	tng = tg + 1;
-		// } else if (tss === 99 && ts === 59 && tm === 59 && tg === 23){
-		// 	tnss = 0;
-		// 	tns = 0;
-		// 	tnm = 0;
-		// 	tng = 0;
-		// } 
-
+  		
 		const StopWatchTime = new Date().getTime() - startTimeSW;
-		
 		//ustawiamy powiększony stan
 		const tng = new Date(StopWatchTime-3600000).getHours();
 		const tnm = new Date(StopWatchTime).getMinutes();		
@@ -118,18 +67,15 @@ const App = () => {
 		setStopwatch(timer);
 		  	    	
   	}
-
-
   	useEffect(() => {
   		let interval4;
-  		
   		if (playState) {
   			interval4 = setInterval(countingUp,10);
   		}
   		return () => {clearInterval(interval4);}
   	},[stopwatch, playState]);
 
-//CLOCK //
+/*CLOCK */
   	const timer = () => {
 
 	    const dd = new Date();
@@ -156,13 +102,21 @@ const App = () => {
 	    setTime(editTime);
   	}
 
-  	/*  ALARM CHECK */
+  	useEffect(() => {
+  		
+    const interval = setInterval(timer,1000);
+    
+    return () => {	
+    	clearInterval(interval);}
+  	},[]);		
+  		
+
+/*  ALARM CHECK */
 
   const comparisonAlarm = () => {
   		
   		const newTimes = [...alarms];//...times]//this.state.times //document.getElementsByClassName("wpisy");
   		const currentTime = time;//document.getElementById("clock").textContent;
-  		
   		
   		newTimes.map(index => {
 
@@ -177,25 +131,15 @@ const App = () => {
   		})
   	} // comparison
 
-
-  	useEffect(() => {
-  		
-    const interval = setInterval(timer,1000);
-    ;
-    return () => {	
-    	clearInterval(interval);}
-  	},[]);		
-  		
-  	
-
   	useEffect(() => {
   		
   		const interval2 = setInterval(comparisonAlarm,500);
    		return () => {clearInterval(interval2);}
-  		// eslint-disable-next-line
+  		
   	 },[time]);
 
-  	/*  COUNTING DOWN */
+
+/*  COUNTING DOWN */
   	const countingDown = () => {
   		const times = [...countdowns];//...timerState];
   		let newTimes = [];
