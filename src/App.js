@@ -15,9 +15,11 @@ const App = () => {
    	const [time, setTime] = useState('');
 	const [alarms, setAlatms] = useState([]);
 	const [countdowns, setCountdowns] = useState([]);
-	const [stopwatch, setStopwatch] = useState('00:00:00');
+	const [stopwatch, setStopwatch] = useState('00:00:00:00');
 	const [stopList, setstopList] = useState([]);
 	const [playState, setPlayState] = useState(false);
+
+	const [startTimeSW, setStartTimeSW] = useState(0);
 
 	const addAlarms = (value) => {
 		setAlatms([...value]);
@@ -38,86 +40,79 @@ const App = () => {
 	const changePlay = (value) => {
 		setPlayState(value);
 	}
-// StopWatch //
+
+
+/*  COUNTING UP STOPWATCH */
 	const countingUp = () => {
   			
-		const stopwatching = stopwatch;
-					// v Wyodrębniamy godziny minuty i sekundy v
-		const tg = Number(stopwatching.slice(0,2));
-		const tm = Number(stopwatching.slice(3,5));
-		const ts = Number(stopwatching.slice(6,8));
-		;
+		// v Wyodrębniamy godziny minuty i sekundy v
+		// const tg = Number(stopwatch.slice(0,2));
+		// const tm = Number(stopwatch.slice(3,5));
+		// const ts = Number(stopwatch.slice(6,8));
+		// const tss = Number(stopwatch.slice(9,11));
+		
+		// const stopWatchTime = (tg * 3600 * 1000) + (tm * 60 * 1000) + (ts * 1000) + (tss * 10);
+
+		// let startTime = new Date().getTime() + stopWatchTime;
+
+		// console.log(startTimeSW);
 		  				
-		let tns, tnm, tng;
-		// v Robimy counting
-
-		if (ts < 59) {
-			tns = ts + 1;
-			tnm = tm;
-			tng = tg;
-		} else if (ts === 59 && tm < 59) {
-			tns = 0;
-			tnm = tm + 1;
-			tng = tg;
-		} else if ( ts === 59 && tm === 59 && tg < 23) {
-			tns = 0;
-			tnm = 0;
-			tng = tg + 1;
-		} else if ( ts === 59 && tm === 59 && tg === 23){
-			tns = 0;
-			tnm = 0;
-			tng = 0;
-		} 
-
-		   
-
-		// if ( tss === 99 && ts === 59 && tm === 59 && tg === 23){
-		// 	tnss = 0;
-		// 	tns = 0;
-		// 	tnm = 0;
-		// 	tng = 0;
-		// } else if ( tss === 99 && ts === 59 && tm === 59 && tg < 23) {
-		// 	tnss = 0;
-		// 	tns = 0;
-		// 	tnm = 0;
-		// 	tng = tg + 1;
-		// } else if (tss === 99 && ts === 59 && tm < 59) {
-		// 	tnss = 0;
-		// 	tns = 0;
-		// 	tnm = tm + 1;
+		// let tnss, tns, tnm, tng;
+		// // v Robimy counting
+		// if (tss < 99) {
+		// 	tnss = tss +1;
+		// 	tns = ts;
+		// 	tnm = tm;
 		// 	tng = tg;
 		// } else if (tss === 99 && ts < 59) {
 		// 	tnss = 0;
 		// 	tns = ts + 1;
 		// 	tnm = tm;
 		// 	tng = tg;
-		// } else if (tss < 99) {
-		// 	tnss = tss  + 1;
-		// 	tns = ts;
-		// 	tnm = tm;
+		// } else if (tss === 99 && ts === 59 && tm < 59) {
+		// 	tnss = 0;
+		// 	tns = 0;
+		// 	tnm = tm + 1;
 		// 	tng = tg;
-		// }
+		// } else if (tss === 99 && ts === 59 && tm === 59 && tg < 23) {
+		// 	tnss = 0;
+		// 	tns = 0;
+		// 	tnm = 0;
+		// 	tng = tg + 1;
+		// } else if (tss === 99 && ts === 59 && tm === 59 && tg === 23){
+		// 	tnss = 0;
+		// 	tns = 0;
+		// 	tnm = 0;
+		// 	tng = 0;
+		// } 
 
+		const StopWatchTime = new Date().getTime() - startTimeSW
 
 		// ustawiamy powiększony stan
-		let timer = "";
+		// let timer = "";
 
-		if (tng < 10){
-			timer = "0"; 
-		} 
-		timer += tng + ":";
+		// if (tng < 10){
+		// 	timer = "0"; 
+		// } 
+		// timer += tng + ":";
 
-		if (tnm < 10){
-			timer += "0"; 
-		} 
-		timer += tnm + ":";
+		// if (tnm < 10){
+		// 	timer += "0"; 
+		// } 
+		// timer += tnm + ":";
 
-		if (tns < 10){
-			timer += "0"; 
-		} 
-		timer += tns;
-		
-		addStopwatch(timer);
+		// if (tns < 10){
+		// 	timer += "0"; 
+		// } 
+		// timer += tns + ":";
+		// if (tnss < 10){
+		// 	timer += "0"; 
+		// } 
+		// timer += tnss;
+
+
+		console.log(StopWatchTime);
+		//setStopwatch(timer);
 		  	    	
   	}
 
@@ -127,7 +122,7 @@ const App = () => {
   		console.log('useEffect');
   		console.log(playState);
   		if (playState) {
-  			interval4 = setInterval(countingUp,1000);
+  			interval4 = setInterval(countingUp,10);
   		}
   		return () => {clearInterval(interval4);}
   	},[stopwatch, playState]);
@@ -158,6 +153,8 @@ const App = () => {
 	    
 	    setTime(editTime);
   	}
+
+  	/*  ALARM CHECK */
 
   const comparisonAlarm = () => {
   		
@@ -196,7 +193,7 @@ const App = () => {
   		// eslint-disable-next-line
   	 },[time]);
 
-
+  	/*  COUNTING DOWN */
   	const countingDown = () => {
   		const times = [...countdowns];//...timerState];
   		let newTimes = [];
@@ -286,7 +283,10 @@ const App = () => {
 					stopwatch: stopwatch,
 					stopList: stopList,
 					playState: playState,
-					time: time
+					time: time,
+					startTimeSW: startTimeSW,
+					setStartTimeSW: setStartTimeSW
+
 
 				}}>
 					<nav className={classes.navi}>

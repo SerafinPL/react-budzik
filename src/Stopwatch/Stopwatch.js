@@ -58,12 +58,30 @@ const CountdownTimer = (props) => {
 
 
   	const startStop = () => {
+  		if (context.stopwatch === '00:00:00:00'){
+  			context.setStartTimeSW(new Date().getTime());
+  		} else {
+  			const tg = Number(context.stopwatch.slice(0,2));
+			const tm = Number(context.stopwatch.slice(3,5));
+			const ts = Number(context.stopwatch.slice(6,8));
+			const tss = Number(context.stopwatch.slice(9,11));
+
+  			const stopWatchTime = new Date().getTime() -
+  				((tg * 3600 * 1000) + 
+  				(tm * 60 * 1000) + 
+  				(ts * 1000) + 
+  				(tss * 10));
+
+  			context.setStartTimeSW(stopWatchTime);
+  		}
+  		
 		context.changePlay(curr => !curr);
+
 	}
 
 	const toZero = () => {
 		
-		context.addStopwatch('00:00:00');
+		context.addStopwatch('00:00:00:00');
 		context.changePlay(false);
 	}
 
