@@ -9,8 +9,6 @@ import classes from './CountdownTimer.module.css';
 import FullContext from '../context/context';
 
 
-
-//class CountdownTimer extends React.Component {
 const CountdownTimer = (props) => {
 	
 	const context = useContext(FullContext);
@@ -44,7 +42,6 @@ const CountdownTimer = (props) => {
 	}
 
 	const deleting = keyring => {
-
 		let filtering = context.countdowns.filter( item => item.key !== keyring );
 		context.addCountdowns(filtering);
 	}

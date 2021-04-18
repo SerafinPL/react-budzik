@@ -30,9 +30,7 @@ const CountdownTimer = (props) => {
 	}
 
 	const deleting = keyring => {
-
 		let filtering = context.stopList.filter( item => item.key !== keyring );
-
 		context.addStopLists(filtering);
   	}
 

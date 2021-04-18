@@ -10,9 +10,6 @@ import classes from './App.module.css';
 
 import FullContext from './context/context';
 
-import useTime from './ownHook/timeHook';
-
-
 
 const App = () => {
    	// czas aktualny
@@ -193,22 +190,26 @@ const App = () => {
 	return(
 			<React.Fragment>
 				<FullContext.Provider value={{
+					//to clock 
 					addAlarms: addAlarms,
-					addCountdowns: addCountdowns,
-					addStopwatch: addStopwatch,
-					addStopLists: addStopLists,
-
-					changePlay: changePlay,
 					alarms:  alarms,
-					countdowns: countdowns,
-					stopwatch: stopwatch,
-					stopList: stopList,
-					playState: playState,
 					time: time,
 
+					//to countDown
+					addCountdowns: addCountdowns,
+					countdowns: countdowns,
+
+					//to stopwatch
+					addStopwatch: addStopwatch,
+					addStopLists: addStopLists,
+					changePlay: changePlay,
+					playState: playState,
+					stopwatch: stopwatch,
+					stopList: stopList,
 					startTimeSW: startTimeSW,
 					setStartTimeSW: setStartTimeSW,
 
+					// to all
 					timing: timing
 				}}>
 					<nav className={classes.navi}>
