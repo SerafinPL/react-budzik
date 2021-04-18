@@ -25,8 +25,8 @@ const CountdownTimer = (props) => {
 		const countdownStartTime = new Date( new Date().getTime() +
 		  				( (g * 3600 * 1000)  + 
 		  				(m * 60 * 1000) + 
-		  				(s * 1000) ) );
-		  		
+		  				( (s * 1000 ) -1 )  ) );
+
   		const countdownLeft = new Date( countdownStartTime.getTime() - new Date().getTime() );	
   		
   		const tng = new Date(countdownLeft-3600000).getHours();
@@ -35,21 +35,20 @@ const CountdownTimer = (props) => {
 
 		let timer = "";
 
-		if (g < 10){
+		if (tng < 10){
 			timer = "0"; 
 		} 
-		timer += g + ":";
+		timer += tng + ":";
 
-		if (m < 10){
+		if (tnm < 10){
 			timer += "0"; 
 		} 
-		timer += m + ":";
+		timer += tnm + ":";
 
-		if (s < 10){
+		if (tns < 10){
 			timer += "0"; 
 		} 
-		timer += s;
-
+		timer += tns;
 
 
 		let arrOfTimes = [...context.countdowns];//...timerState];
