@@ -15,8 +15,7 @@ const CountdownTimer = (props) => {
 	
 	const context = useContext(FullContext);
 
-	//const [timerState, setTimerState] = useState([]);
-	// zmiana na strzałkową funkcje daje możliwość pomijania bindowania
+	
 	const setter = () =>{
 		const g = document.getElementById("hour").textContent;
 		const m = document.getElementById("min").textContent;
@@ -25,7 +24,8 @@ const CountdownTimer = (props) => {
 		const countdownStartTime = new Date( new Date().getTime() +
 		  				( (g * 3600 * 1000)  + 
 		  				(m * 60 * 1000) + 
-		  				( s * 1000  )  ) );
+		  				(s * 1000) ) 
+		  				);
 
   		const countdownLeft = new Date( countdownStartTime.getTime() - new Date().getTime() );	
   		
@@ -33,34 +33,34 @@ const CountdownTimer = (props) => {
 		const tnm = new Date(countdownLeft).getMinutes();		
 		const tns = new Date(countdownLeft).getSeconds();
 
-		let timer = "";
+		// let timer = "";
 
-		if (tng < 10){
-			timer = "0"; 
-		} 
-		timer += tng + ":";
+		// if (tng < 10){
+		// 	timer = "0"; 
+		// } 
+		// timer += tng + ":";
 
-		if (tnm < 10){
-			timer += "0"; 
-		} 
-		timer += tnm + ":";
+		// if (tnm < 10){
+		// 	timer += "0"; 
+		// } 
+		// timer += tnm + ":";
 
-		if (tns < 10){
-			timer += "0"; 
-		} 
-		timer += tns;
+		// if (tns < 10){
+		// 	timer += "0"; 
+		// } 
+		// timer += tns;
 
+		
 
-		let arrOfTimes = [...context.countdowns];//...timerState];
+		let arrOfTimes = [...context.countdowns];
 
 		arrOfTimes.unshift({
 			countdownTime : countdownStartTime,
-			alarmClock: timer,
+			alarmClock: context.timing(tng, tnm, tns),
 			key : new Date().getTime()
 		});
 		context.addCountdowns(arrOfTimes);
-		//setTimerState(arrOfTimes);
-		
+				
 	}
 
 
@@ -71,10 +71,7 @@ const CountdownTimer = (props) => {
     	});
 		context.addCountdowns(filtering);
 		//setTimerState(filtering);
-    	
   	}
-
-
 
 	return(
 		<React.Fragment>

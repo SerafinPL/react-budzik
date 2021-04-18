@@ -205,10 +205,11 @@ const App = () => {
 					stopList: stopList,
 					playState: playState,
 					time: time,
+
 					startTimeSW: startTimeSW,
-					setStartTimeSW: setStartTimeSW
+					setStartTimeSW: setStartTimeSW,
 
-
+					timing: timing
 				}}>
 					<nav className={classes.navi}>
 						<NavLink to='/alarmclock' activeClassName={classes.active}>Budzik</NavLink>
