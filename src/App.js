@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
 
@@ -76,7 +76,7 @@ const App = () => {
 	}
 
 /*  COUNTING UP STOPWATCH */
-	const countingUp = () => {
+	const countingUp = useCallback(() => {
   		
 		const StopWatchTime = new Date().getTime() - startTimeSW;
 		//ustawiamy stan
@@ -86,24 +86,24 @@ const App = () => {
 		const tnss = Number( Math.floor(new Date(StopWatchTime).getMilliseconds() / 10) );		
 
 		setStopwatch(timing(tng, tnm, tns, tnss));
- 	}
+ 	} ,[startTimeSW]);
   	useEffect(() => {
   		let interval4;
   		if (playState) {
   			interval4 = setInterval(countingUp,10);
   		}
   		return () => {clearInterval(interval4);}
-  	},[stopwatch, playState]);
+  	},[stopwatch, playState, countingUp]);
 
 /*CLOCK */
-  	const timer = () => {
+  	const timer = useCallback(() => {
 
 	    const tng = Number( new Date().getHours() );
 	    const tnm = Number( new Date().getMinutes() );
 	    const tns = Number( new Date().getSeconds() );
 
 	    setTime(timing(tng, tnm, tns));
-  	}
+  	} ,[] );
 
   	useEffect(() => {
   		
@@ -111,12 +111,12 @@ const App = () => {
     
     return () => {	
     	clearInterval(interval);}
-  	},[]);		
+  	},[timer]);		
   		
 
 /*  ALARM CHECK */
 
-  const comparisonAlarm = () => {
+  const comparisonAlarm = useCallback(() => {
   		
   		const newTimes = [...alarms];//...times]//this.state.times //document.getElementsByClassName("wpisy");
   		  		
@@ -127,22 +127,21 @@ const App = () => {
   			if (t === time){
   				document.getElementById("audio").play();
   				window.alert('Budzik ustawiono na: ' + time);
-  				//deleting(newTimes[i].key);
   			}
   			return null;
   		})
-  	} // comparison
+  	} ,[alarms, time])// comparison
 
   	useEffect(() => {
   		
   		const interval2 = setInterval(comparisonAlarm,500);
    		return () => {clearInterval(interval2);}
   		
-  	 },[time]);
+  	 },[time, comparisonAlarm]);
 
 
 /*  COUNTING DOWN */
-  	const countingDown = () => {
+  	const countingDown = useCallback(() => {
   		const times = [...countdowns];//...timerState];
   		let newTimes = [];
   		let deleted = null; // zmienna zaznacza czy kasujemy ten element
@@ -180,12 +179,12 @@ const App = () => {
   		if (newTimes !== undefined){ // blokada przed uzupełnianiem pusych tablic
   			setCountdowns(newTimes);
     	}
-  	}
+  	} ,[countdowns]);
 
   	useEffect(() => {
 		const interval3 = setInterval(countingDown,1000);
 		return () => {clearInterval(interval3);}
-  	},[countdowns]);
+  	},[countdowns, countingDown]);
 
 	return(
 			<React.Fragment>
