@@ -75,11 +75,17 @@ const CountOut = props => {
 		const chosenDate = new Date().setFullYear(year, month, day);
 		
 		if ( chosenDate > new Date() ) {
-			const deduct = Math.floor(new Date(chosenDate - new Date()) / 86400000);
-			setCountingDay(`zostało ${deduct} dni`);
+			const days = Math.floor(new Date(chosenDate - new Date()) / 86400000);
+			const months = days / 30;
+			const years = months / 12
+			setCountingDay(`zostało ${days} dni to około ${months.toFixed(2)} miesięcy i w przybliżeniu ${years.toFixed(2)} lat.`);
+
+			
 		} else {
-			const deduct = Math.floor(new Date(new Date() - chosenDate) / 86400000);
-			setCountingDay(`mineło ${deduct} dni`);
+			const days = Math.floor(new Date(new Date() - chosenDate) / 86400000);
+			const months = days / 30;
+			const years = months / 12
+			setCountingDay(`mineło ${days} dni to około ${months.toFixed(2)} miesięcy i w przybliżeniu ${years.toFixed(2)} lat.`);
 		}
 		
 
