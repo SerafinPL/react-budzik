@@ -7,8 +7,10 @@ import Times from "../Times/Times.js";
 import classes from './AlarmClock.module.css';
 
 import FullContext from '../context/context';
+import useTimeDisplay from '../ownHook/timeDisplayHook';
 
 const AlarmClock = (props) => {
+	const timeDisplay = useTimeDisplay();
 	const context = useContext(FullContext);
 	
 	const setter = () => {
@@ -19,7 +21,7 @@ const AlarmClock = (props) => {
 		let arrOfTimes = [...context.alarms];//...times];
 
 		arrOfTimes.unshift({
-			alarmClock : context.timing(g, m, s),
+			alarmClock : timeDisplay(g, m, s),
 			key : new Date().getTime()
 		});
 

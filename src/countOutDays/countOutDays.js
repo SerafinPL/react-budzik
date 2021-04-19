@@ -53,7 +53,7 @@ const CountOut = props => {
 		} else if (m ===  '2') {
 			howManyIn02(year, month);
 		}
-	},[year]);
+	},[year,month]);
 
 	useEffect(() => {
 		if (refDay.current.value > maxDay) {

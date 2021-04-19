@@ -6,12 +6,14 @@ import Times from "../Times/Times.js";
 import classes from './Stopwatch.module.css';
 
 import FullContext from '../context/context';
-
+import useTimeDisplay from '../ownHook/timeDisplayHook';
 
 const CountdownTimer = (props) => {
 	
 	const context = useContext(FullContext);
 
+	const timeDisplay = useTimeDisplay();
+	
 	const setter = () =>{
 		const g =  Number(context.stopwatch.slice(0,2));
 		const m = Number(context.stopwatch.slice(3,5));
@@ -21,7 +23,7 @@ const CountdownTimer = (props) => {
 		let arrOfTimes = [...context.stopList];
 
 		arrOfTimes.unshift({
-			alarmClock : context.timing(g, m, s, ss),
+			alarmClock : timeDisplay(g, m, s, ss),
 			key : new Date().getTime()
 		});
 

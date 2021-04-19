@@ -38,47 +38,47 @@ const App = () => {
 
 	const timeDisplay = useTimeDisplay();
 
-	const timing = (g, m, s, ss) => {
-		let timer = '';
-		if (ss || ss === 0) {
+	// const timing = (g, m, s, ss) => {
+	// 	let timer = '';
+	// 	if (ss || ss === 0) {
 
-			if (g < 10){
-				timer = "0"; 
-			} 
-			timer += g + ":";
+	// 		if (g < 10){
+	// 			timer = "0"; 
+	// 		} 
+	// 		timer += g + ":";
 
-			if (m < 10){
-				timer += "0"; 
-			} 
-			timer += m + ":";
+	// 		if (m < 10){
+	// 			timer += "0"; 
+	// 		} 
+	// 		timer += m + ":";
 
-			if (s < 10){
-				timer += "0"; 
-			} 
-			timer += s + ":";
-			if (ss < 10){
-				timer += "0"; 
-			} 
-			timer += ss;
+	// 		if (s < 10){
+	// 			timer += "0"; 
+	// 		} 
+	// 		timer += s + ":";
+	// 		if (ss < 10){
+	// 			timer += "0"; 
+	// 		} 
+	// 		timer += ss;
 
-		} else {
-			if (g < 10){
-				timer = "0"; 
-			} 
-			timer += g + ":";
+	// 	} else {
+	// 		if (g < 10){
+	// 			timer = "0"; 
+	// 		} 
+	// 		timer += g + ":";
 
-			if (m < 10){
-				timer += "0"; 
-			} 
-			timer += m + ":";
+	// 		if (m < 10){
+	// 			timer += "0"; 
+	// 		} 
+	// 		timer += m + ":";
 
-			if (s < 10){
-				timer += "0"; 
-			} 
-			timer += s;
-		}
-		return timer;
-	}
+	// 		if (s < 10){
+	// 			timer += "0"; 
+	// 		} 
+	// 		timer += s;
+	// 	}
+	// 	return timer;
+	// }
 
 /*  COUNTING UP STOPWATCH */
 	const countingUp = useCallback(() => {
@@ -91,7 +91,7 @@ const App = () => {
 		const tnss = Number( Math.floor(new Date(StopWatchTime).getMilliseconds() / 10) );		
 
 		setStopwatch(timeDisplay(tng, tnm, tns, tnss));
- 	} ,[startTimeSW]);
+ 	} ,[startTimeSW, timeDisplay]);
   	useEffect(() => {
   		let interval4;
   		if (playState) {
@@ -108,7 +108,7 @@ const App = () => {
 	    const tns = Number( new Date().getSeconds() );
 
 	    setTime(timeDisplay(tng, tnm, tns));
-  	} ,[] );
+  	} ,[timeDisplay] );
 
   	useEffect(() => {
   		
@@ -184,7 +184,7 @@ const App = () => {
   		if (newTimes !== undefined){ // blokada przed uzupełnianiem pusych tablic
   			setCountdowns(newTimes);
     	}
-  	} ,[countdowns]);
+  	} ,[countdowns,timeDisplay]);
 
   	useEffect(() => {
 		const interval3 = setInterval(countingDown,1000);
@@ -213,8 +213,6 @@ const App = () => {
 					startTimeSW: startTimeSW,
 					setStartTimeSW: setStartTimeSW,
 
-					// to all
-					timing: timing
 				}}>
 					<nav className={classes.navi}>
 						<NavLink to='/alarmclock' activeClassName={classes.active}>Budzik</NavLink>

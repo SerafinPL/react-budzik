@@ -6,12 +6,14 @@ import Button from "../Button/Button.js";
 import Times from "../Times/Times.js";
 import classes from './CountdownTimer.module.css';
 
+import useTimeDisplay from '../ownHook/timeDisplayHook';
 import FullContext from '../context/context';
 
 
 const CountdownTimer = (props) => {
 	
 	const context = useContext(FullContext);
+	const timeDisplay = useTimeDisplay();
 
 	const setter = () =>{
 		const g = document.getElementById("hour").textContent;
@@ -34,7 +36,7 @@ const CountdownTimer = (props) => {
 
 		arrOfTimes.unshift({
 			countdownTime : countdownStartTime,
-			alarmClock: context.timing(tng, tnm, tns),
+			alarmClock: timeDisplay(tng, tnm, tns),
 			key : new Date().getTime()
 		});
 		context.addCountdowns(arrOfTimes);
