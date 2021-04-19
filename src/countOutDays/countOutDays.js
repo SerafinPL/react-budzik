@@ -6,13 +6,10 @@ import Button from "../Button/Button.js";
 
 const CountOut = props => {
 	const refDay = useRef(null);
-
 	const [day, setDay] = useState(1);
 	const [month, setMonth] = useState(1);
 	const [year, setYear] = useState(2021);
-
 	const [maxDay, setMaxDay] = useState(31);
-
 	const [countingDay, setCountingDay] = useState(0);
 
 	
@@ -39,7 +36,6 @@ const CountOut = props => {
 			setMaxDay(30);
 		} else if (m ===  '2') {
 			howManyIn02(year, month);
-			
 		}
 	}
 
@@ -57,16 +53,12 @@ const CountOut = props => {
 		} else if (m ===  '2') {
 			howManyIn02(year, month);
 		}
-		
-		
 	},[year]);
 
 	useEffect(() => {
-		
 		if (refDay.current.value > maxDay) {
 			setDay(maxDay);
 		}
-		
 	},[maxDay]);
 
 	
@@ -88,10 +80,7 @@ const CountOut = props => {
 			setCountingDay(`mineło ${days} dni to około ${months.toFixed(2)} miesięcy i w przybliżeniu ${years.toFixed(2)} lat.`);
 		}
 		
-
 	}
-
-console.log('render');
 
 
 	return (
@@ -112,7 +101,7 @@ console.log('render');
 					  <option value="12">Grudzień</option>
 				</select>
 				<input type='number' min='1970' onChange={changeYear} value={year}/>
-				<Button func={count}>Odlicz</Button>
+				<Button func={count}>Oblicz</Button>
 
 				<h3>{countingDay}</h3>
 
