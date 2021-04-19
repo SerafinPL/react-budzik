@@ -11,6 +11,8 @@ import classes from './App.module.css';
 
 import FullContext from './context/context';
 
+import useTimeDisplay from './ownHook/timeDisplayHook';
+
 
 const App = () => {
    	// czas aktualny
@@ -33,6 +35,8 @@ const App = () => {
 	const addStopwatch = (value) => { setStopwatch(value); };
 	const addStopLists = (value) => { setstopList([...value]); };
 	const changePlay = (value) => { setPlayState(value); };
+
+	const timeDisplay = useTimeDisplay();
 
 	const timing = (g, m, s, ss) => {
 		let timer = '';
@@ -86,7 +90,7 @@ const App = () => {
 		const tns = Number( new Date(StopWatchTime).getSeconds() );
 		const tnss = Number( Math.floor(new Date(StopWatchTime).getMilliseconds() / 10) );		
 
-		setStopwatch(timing(tng, tnm, tns, tnss));
+		setStopwatch(timeDisplay(tng, tnm, tns, tnss));
  	} ,[startTimeSW]);
   	useEffect(() => {
   		let interval4;
@@ -103,7 +107,7 @@ const App = () => {
 	    const tnm = Number( new Date().getMinutes() );
 	    const tns = Number( new Date().getSeconds() );
 
-	    setTime(timing(tng, tnm, tns));
+	    setTime(timeDisplay(tng, tnm, tns));
   	} ,[] );
 
   	useEffect(() => {
@@ -161,7 +165,7 @@ const App = () => {
 				tng = new Date(baseTime-3600000).getHours();
 				tnm = new Date(baseTime).getMinutes();
 				tns = new Date(baseTime).getSeconds();
-				timer = timing(tng, tnm, tns);
+				timer = timeDisplay(tng, tnm, tns);
 			};
 
 			// ustawiamy pomniejszony stan
