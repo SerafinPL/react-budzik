@@ -1,0 +1,9 @@
+.main {
+	padding: 20px;
+	text-align: center;
+}
+
+.main input {
+	width: 50px;
+	margin: 5px;
+}
