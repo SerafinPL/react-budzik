@@ -2,10 +2,11 @@ import React, {useEffect, useState, useCallback} from "react";
 
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
 
-import Button from "./Button/Button.js";
 import AlarmClock from "./AlarmClock/AlarmClock.js";
 import CountdownTimerFunc from "./CountdownTimer/CountdownTimerFunc.js";
 import Stopwatch from "./Stopwatch/Stopwatch.js";
+import CountOut from './countOutDays/countOutDays';
+
 import classes from './App.module.css';
 
 import FullContext from './context/context';
@@ -215,12 +216,14 @@ const App = () => {
 						<NavLink to='/alarmclock' activeClassName={classes.active}>Budzik</NavLink>
 						<NavLink to='/countdowntimer' activeClassName={classes.active}>Minutnik</NavLink>
 						<NavLink to='/stopwatch' activeClassName={classes.active}>Stoper</NavLink>
-						<Button children="Odliczanie" classe="buttSet" />
+						<NavLink to='/countoutdays' activeClassName={classes.active}>Odliczanie Dni</NavLink>
+						
 					</nav>
 					<Switch>
 						<Route path='/alarmclock' component={AlarmClock}/>
 						<Route path='/countdowntimer' component={CountdownTimerFunc}/>
 						<Route path='/stopwatch' component={Stopwatch}/>
+						<Route path='/countoutdays' component={CountOut}/>
 						<Redirect to='/alarmclock' />
 					</Switch>
 				</FullContext.Provider>

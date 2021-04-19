@@ -13,7 +13,7 @@
 
 .buttSet {
 	float: left;
-	clear: both;
+	/*clear: both;*/
 	width: 110px;
 	height: 20px;
 	border: 1px solid #fff;

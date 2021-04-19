@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 const Window = (props) => {
 	return(
           <React.Fragment>

@@ -1,8 +1,13 @@
+.navi {
+	width: 100px;
+}
+
+
 .navi a {
 	float: left;
 	clear: both;
 	width: 100px;
-	height: 20px;
+	/*height: 20px;*/
 	border: 1px solid #fff;
 	text-align: center;
 	padding: 0;
