@@ -4,6 +4,7 @@ const Window = (props) => {
 	return(
           <React.Fragment>
             <span id={props.ident}>{props.content}</span>
+            {props.end ? null : <span style={{width: '5px'}}>:</span>}
           </React.Fragment>
         );
 };

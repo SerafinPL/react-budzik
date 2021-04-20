@@ -54,7 +54,7 @@ const CountdownTimer = (props) => {
 				<p>Minutnik</p>
 				<Display gardener="23" identy="hour"/>
 				<Display gardener="59" identy="min"/>
-				<Display gardener="59" identy="sec"/>
+				<Display gardener="59" identy="sec" end/>
 				<Button children="Ustaw" classe="buttSet" func={setter}/>
 			</div>
 			<Times elements={context.countdowns} deleting={deleting}/>
