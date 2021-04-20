@@ -3,7 +3,7 @@ import React from "react";
 const Window = (props) => {
 	return(
           <React.Fragment>
-            <span id={props.ident}>{props.content} </span>
+            <span id={props.ident}>{props.content}</span>
           </React.Fragment>
         );
 };

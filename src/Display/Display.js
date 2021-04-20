@@ -60,7 +60,7 @@ const Display = (props) => {
 						onMDown={() => setPressedUp(true)} 
 						onMUp={() => setPressedUp(false)}
 				/>
-				<Window ident={props.identy} content={value}/>
+				<Window ident={props.identy} content={value} />
 				<Button children="-" 
 						classe="buttMini" 
 						func={downgrade} 

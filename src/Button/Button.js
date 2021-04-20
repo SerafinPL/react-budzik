@@ -4,6 +4,7 @@ import "./Button.css";
 
 
 const Button = (props) => {
+	
 	return(
 		<React.Fragment>
             <button 
@@ -18,7 +19,7 @@ const Button = (props) => {
 
 
 
-export default Button;
+export default React.memo(Button);
 
 
 

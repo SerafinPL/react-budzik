@@ -45,7 +45,7 @@ const AlarmClock = (props) => {
 			<Clock/>
 			<Display gardener="23" identy="hour"/>
 			<Display gardener="59" identy="min"/>
-			<Display gardener="59" identy="sec" end/>
+			<Display gardener="59" identy="sec"/>
 			<Button children="Ustaw" classe="buttSet" func={setter}/>
 		</div>
 		<Times elements={context.alarms} deleting={deleting}/>
