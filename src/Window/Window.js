@@ -13,4 +13,4 @@ const Window = (props) => {
 
  // class Wyswietlacz
 
-export default Window;
+export default React.memo(Window);
