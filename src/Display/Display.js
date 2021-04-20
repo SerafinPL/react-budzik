@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 
 
 import Button from "../Button/Button";
@@ -13,25 +13,23 @@ const Display = (props) => {
 	const [pressedUp, setPressedUp] = useState(false);
 	const [pressedDown, setPressedDown] = useState(false);
 
-	const upgrade = () => {
+	const {gardener} = props;
+
+	const upgrade = useCallback(() => {
 		if (value < props.gardener){
 			setValue(curr => curr + 1);
 		} else {
 			setValue(0);
 		}
-	};
+	}, [value, gardener]);
 
-	const downgrade = () => {
+	const downgrade = useCallback(() => {
 		if (value <= 0){
 			setValue(props.gardener);
 		} else {
 			setValue(curr => curr - 1);
 		}
-	};
-
-
-
-
+	},[value, gardener])
 
 	useEffect(() => {
 			let interval;
@@ -53,7 +51,7 @@ const Display = (props) => {
 			clearInterval(interval);
 			
 		}
-	},[pressedUp, pressedDown, value]);
+	},[pressedUp, pressedDown, value, upgrade, downgrade]);
 
 	return(
 		<React.Fragment>
