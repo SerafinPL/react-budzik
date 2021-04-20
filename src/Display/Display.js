@@ -13,15 +13,13 @@ const Display = (props) => {
 	const [pressedUp, setPressedUp] = useState(false);
 	const [pressedDown, setPressedDown] = useState(false);
 
-	const {gardener} = props;
-
 	const upgrade = useCallback(() => {
 		if (value < props.gardener){
 			setValue(curr => curr + 1);
 		} else {
 			setValue(0);
 		}
-	}, [value, gardener]);
+	}, [value, props.gardener]);
 
 	const downgrade = useCallback(() => {
 		if (value <= 0){
@@ -29,7 +27,7 @@ const Display = (props) => {
 		} else {
 			setValue(curr => curr - 1);
 		}
-	},[value, gardener])
+	},[value, props.gardener]);
 
 	useEffect(() => {
 			let interval;
