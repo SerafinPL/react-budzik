@@ -73,14 +73,14 @@ const CountOut = props => {
 			const days = Math.floor((chosenDate - new Date()) / 86400000);
 			const months = days / 30;
 			const years = days / 365
-			setCountingDay(`zostało ${days} dni to około ${months.toFixed(2)} miesięcy i w przybliżeniu ${years.toFixed(2)} lat.`);
+			setCountingDay(`zostało dokładnie ${days} dni to około ${months.toFixed(2)} miesięcy i w przybliżeniu ${years.toFixed(2)} lat.`);
 
 			
 		} else {
 			const days = Math.floor((new Date().getTime() - chosenDate) / 86400000);
 			const months = days / 30;
 			const years = months / 12
-			setCountingDay(`mineło ${days} dni to około ${months.toFixed(2)} miesięcy i w przybliżeniu ${years.toFixed(2)} lat.`);
+			setCountingDay(`mineło  dokładnie ${days} dni to około ${months.toFixed(2)} miesięcy i w przybliżeniu ${years.toFixed(2)} lat.`);
 		}
 		
 	}
